@@ -33,40 +33,40 @@ import NavigationModal from './components/NavigationModal';
 // Exquisite off-grid ministry pillars
 const MINISTRY_PILLARS: MinistryPillar[] = [
   {
-    id: 'stille-gebet',
-    title: 'Stille & Gebet (Contemplative)',
-    category: 'WEGWEISER 01',
-    vibe: 'Atmosphärische Leere',
-    description: 'Ein geschützter Kreis konzentriert auf die reine, unverfälschte Begegnung im Schweigen und kontemplativen Gebet. Ohne Inszenierung.',
-    accentQuote: 'In der Stille offenbart sich die tragende Kraft Gottes außerhalb jedes irdischen Rauschens.',
-    activities: ['Stundenabläufe der Stille', 'Schöpfungsbetrachtung', 'Geistliches Tagebuch']
+    id: 'prophetic-atmosphere',
+    title: 'Prophetic Atmosphere',
+    category: 'SPIRIT & POWER 01',
+    vibe: 'Divine Presence',
+    description: 'Immerse yourself in deep worship and prophetic encounters that shift atmospheres and reignite hearts.',
+    accentQuote: 'Experience the tangible presence of God, where faith is ignited and destinies are transformed.',
+    activities: ['Corporate Worship', 'Prophetic Intercession', 'Healing Ministries']
   },
   {
-    id: 'liturgie-tee',
-    title: 'Wort & Liturgie (Catechism)',
-    category: 'WEGWEISER 02',
-    vibe: 'Liturgischer Rhythmus',
-    description: 'Gemeinsame theologische Studien und altkirchliche Gebetszeiten (Horen) in kleinen, vertrauten Kreisen der Reflexion.',
-    accentQuote: 'Worte, getragen von Jahrhunderten der Treue, weisen unserer Seele den verlässlichen Pfad.',
-    activities: ['Studierzirkel', 'Stundengebete', 'Theologisches Forum']
+    id: 'word-of-power',
+    title: 'Word of Power',
+    category: 'SCRIPTURE & DOCTRINE 02',
+    vibe: 'Biblical Foundation',
+    description: 'Biblical truths taught with clarity, power, and practical application for your daily victory in life.',
+    accentQuote: 'The living Word of God grants us orientation, wisdom, and the authority for personal transformation.',
+    activities: ['Kingdom School', 'Wednesday Word Study', 'Sermon Analysis']
   },
   {
-    id: 'gemeinschaft-mission',
-    title: 'Gemeinschaft & Mission (Active)',
-    category: 'WEGWEISER 03',
-    vibe: 'Glaube in Aktion',
-    description: 'Gelebter Glaube im praktischen Feld. Mutiger Nächstenaufbruch, Kooperation mit regionalen Hilfen und echtes Brotbrechen.',
-    accentQuote: 'Der Glaube wird lebendig, wo wir die Geringsten in Ehren halten und Becher reichen.',
-    activities: ['Regionale Nächstenhilfe', 'Gemeinschafts-Zeltlager', 'Hauskreise']
+    id: 'family-love',
+    title: 'Family & Love',
+    category: 'FELLOWSHIP 03',
+    vibe: 'Warm Welcome',
+    description: 'A loving community where you are fully accepted, supported, and encouraged to develop your full potential in God.',
+    activities: ['Life Groups', 'Community Meals', 'Counseling & Support'],
+    accentQuote: 'We are not just a church; we are a family walking together in love.'
   },
   {
-    id: 'auszeit-studium',
-    title: 'Theologische Auszeit (Study)',
-    category: 'WEGWEISER 04',
-    vibe: 'Innere Kalibrierung',
-    description: 'Exklusive Phasen für theologische Studien, Bibelkunde und das bewusste Ordnen der inneren Stimme in abgelegener Umgebung.',
-    accentQuote: 'Sich herausziehen aus dem Getümmel der Welt, um das Fundament unseres Heils neu zu verankern.',
-    activities: ['Bibelkundliche Einheiten', 'Seelsorge-Gespräche', 'Abendmahlszyklen']
+    id: 'divine-guidance',
+    title: 'Divine Guidance',
+    category: 'SPIRITUAL GROWTH 04',
+    vibe: 'Holy Spirit Leading',
+    description: 'A Christ-centered focus on spiritual growth, divine leadership, and activation of the gifts of the Holy Spirit.',
+    accentQuote: 'Led by the Holy Spirit, we confidently walk into the destiny God has prepared for us.',
+    activities: ['Mentorship Programs', 'Gifts Activation', 'Prayer Vigils']
   }
 ];
 
@@ -84,26 +84,26 @@ interface SermonCard {
 const SERMONS_DATA: SermonCard[] = [
   {
     id: 'sermon_1',
-    title: 'In der Stille wachsen',
-    description: 'Ein Impuls über den Fokus in einer lauten Welt.',
-    speaker: 'Pastor Johannes Thorne',
-    category: 'Impuls • 8 Min',
+    title: 'Teaching the Kingdom of God',
+    description: 'An in-depth scriptural journey exploring the principles of the Kingdom of God and spiritual growth.',
+    speaker: 'Pastor Isaac Mahugnon',
+    category: 'Teaching • 18 Min',
     frequency: 180, // F3 pitch
   },
   {
     id: 'sermon_2',
-    title: 'Die Kraft der Verbindung',
-    description: 'Warum echte Gemeinschaft wichtiger ist als digitaler Beifall.',
-    speaker: 'Dr. Sarah Althaus',
-    category: 'Predigt • 15 Min',
+    title: 'The Power of the Holy Spirit',
+    description: 'Experience supernatural restoration and divine life transformation through the workings of the Spirit.',
+    speaker: 'Pastor Isaac Mahugnon',
+    category: 'Sermon • 25 Min',
     frequency: 220, // A3 pitch
   },
   {
     id: 'sermon_3',
-    title: 'Mut zum Neuanfang',
-    description: 'Wie wir uns von alten Lasten befreien und den Glauben modern leben.',
-    speaker: 'Ruth Gabriel',
-    category: 'Geistliches Wort • 12 Min',
+    title: 'Prophetic Dimensions',
+    description: 'How to clearly hear God\'s voice and actively shift atmospheres through deep worship.',
+    speaker: 'Pastor Isaac Mahugnon',
+    category: 'Message • 20 Min',
     frequency: 261.63, // C4 pitch
   }
 ];
@@ -122,39 +122,30 @@ interface CommunityEvent {
 const EVENTS_DATA: CommunityEvent[] = [
   {
     id: 'event_1',
-    dateBadge: '15. Juni',
-    title: 'Community Dinner',
-    subtitle: 'Ein Abend voller herzlicher Gespräche, feinem Essen und ungezwungener Gemeinschaft.',
-    time: '18:30 - 21:30 Uhr',
-    location: 'Royal Ministry Refugium, Hauptsaal',
-    slotsRemaining: 8
+    dateBadge: 'SUN. 09:00',
+    title: 'Celebration Service',
+    subtitle: 'Our weekly Sunday service. Join us for a powerful encounter in faith and insightful biblical teachings.',
+    time: '09:00 AM - 11:30 AM',
+    location: 'Rheinlandstraße 14, 60529 Frankfurt am Main, Germany',
+    slotsRemaining: 120
   },
   {
     id: 'event_2',
-    dateBadge: '22. Juni',
-    title: 'Workshop: Neue Horizonte',
-    subtitle: 'Praktische theologische Ansätze für ein bewusstes, entschleunigtes Leben im Alltag.',
-    time: '14:00 - 18:00 Uhr',
-    location: 'Atelier der Stille & Online',
-    slotsRemaining: 15
+    dateBadge: 'WED. 18:00',
+    title: 'Word & Power',
+    subtitle: 'Midweek Bible study with dynamic teaching. Equip yourself with practical biblical keys for daily victory.',
+    time: '06:00 PM - 07:30 PM',
+    location: 'Rheinlandstraße 14, 60529 Frankfurt am Main, Germany',
+    slotsRemaining: 80
   },
   {
     id: 'event_3',
-    dateBadge: '08. Juli',
-    title: 'Offener Studierkreis',
-    subtitle: 'Kritische Fragen und offene Diskussionen über die Relevanz altkirchlicher Liturgien heute.',
-    time: '19:00 - 21:00 Uhr',
-    location: 'Bibliothek im Nordturm',
-    slotsRemaining: 12
-  },
-  {
-    id: 'event_4',
-    dateBadge: '18. Juli',
-    title: 'Outdoor Gottesdienst & Einkehr',
-    subtitle: 'Morgendliche Bergwanderung gefolgt von einer einfachen, stillen Andacht mitten in der Natur.',
-    time: '08:00 - 15:00 Uhr',
-    location: 'Treffpunkt: Wanderparkplatz Alpgrund',
-    slotsRemaining: 5
+    dateBadge: 'FRI. 23:00',
+    title: 'Miracle Vigil',
+    subtitle: 'Experience a night of miracles, deep prophetic encounters, and deliverance in our Friday night prayer vigil.',
+    time: '11:00 PM - 02:00 AM',
+    location: 'Rheinlandstraße 14, 60529 Frankfurt am Main, Germany',
+    slotsRemaining: 60
   }
 ];
 
@@ -267,7 +258,7 @@ export default function App() {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail.trim() || !newsletterEmail.includes('@')) {
-      alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+      alert('Please enter a valid email address.');
       return;
     }
     setNewsletterSubmitted(true);
@@ -324,7 +315,7 @@ export default function App() {
             className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
             id="nav-link-sermons"
           >
-            PREDIGTEN
+            SERMONS
           </button>
           <button
             onClick={() => handleScrollToSection('events-section')}
@@ -352,7 +343,7 @@ export default function App() {
             className="bg-white hover:bg-white/95 text-black rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-[10px] sm:text-[11px] font-medium tracking-[0.12em] uppercase cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all"
             id="get-roaming-btn"
           >
-            Anmelden
+            REGISTER
           </button>
 
           {/* Hamburger Mobile Menu Toggle Button */}
@@ -360,7 +351,7 @@ export default function App() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="flex md:hidden p-2 text-white/80 hover:text-white hover:bg-white/5 rounded-full border border-white/10 transition-colors"
             id="mobile-menu-toggle"
-            aria-label="Menü öffnen"
+            aria-label="Open menu"
           >
             {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -396,7 +387,7 @@ export default function App() {
               }}
               className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
             >
-              PREDIGTEN
+              SERMONS
             </button>
             <button
               onClick={() => {
@@ -424,12 +415,12 @@ export default function App() {
               }}
               className="bg-white hover:bg-white/95 text-black rounded-full py-3.5 text-xs font-semibold tracking-widest uppercase mt-4 w-full transition-all"
             >
-              Anmelden
+              REGISTER
             </button>
           </nav>
           
           <div className="text-center text-[10px] font-mono text-white/20 tracking-widest">
-            ROYAL MINISTRY — GRENZENLOS GLAUBEN
+            ROYAL MINISTRY — EXPERIENCE THE REALM OF MIRACLES
           </div>
         </div>
       )}
@@ -471,7 +462,7 @@ export default function App() {
           <div className="flex justify-center items-center gap-2 mb-4">
             <Sparkles className="text-white/70 animate-pulse" size={16} />
             <span className="text-[10px] md:text-xs font-mono tracking-[0.25em] text-white/50 uppercase">
-              WILLKOMMEN BEI ROYAL MINISTRY
+              WELCOME TO ROYAL MINISTRY
             </span>
           </div>
 
@@ -480,15 +471,15 @@ export default function App() {
             style={{ fontSize: "clamp(46px, 6vw, 84px)" }}
           >
             <span className="text-white font-normal font-serif-instrument italic tracking-normal">
-              Finden Sie Ihr
+              Welcome to the
             </span>
             <span className="text-white/90 font-light font-sans tracking-tight">
-              geistliches Zuhause.
+              Realm of Miracles.
             </span>
           </h1>
 
           <p className="mt-8 text-base md:text-lg text-white/70 font-light max-w-2xl mx-auto leading-relaxed">
-            Ein Ort für Inspiration, Wachstum und authentische Gemeinschaft. Entdecken Sie Lehren, die bewegen, und Menschen, die gemeinsam wachsen.
+            Experience the tangible presence of God, where faith is ignited and destinies are transformed. A place for inspiration, growth, and authentic community.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -497,30 +488,30 @@ export default function App() {
               className="border border-white/20 hover:border-white/50 text-white text-[14px] font-medium rounded-full px-8 py-4 cursor-pointer hover:scale-[1.03] active:scale-[0.97] bg-white/5 backdrop-blur-sm transition-all duration-300"
               id="explore-vision-btn"
             >
-              Unsere Vision
+              Our Vision
             </button>
             <button 
               onClick={() => handleScrollToSection('medien-section')}
               className="bg-white text-black text-[14px] font-semibold rounded-full px-8 py-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_0_35px_5px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-300"
               id="escape-cta-btn"
             >
-              Predigten ansehen
+              Watch Sermons
             </button>
           </div>
         </div>
 
         {/* Side quote accent displayed only on desktops */}
         <div className="absolute right-12 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col gap-2 max-w-[190px] text-right" id="hero-side-quote">
-          <span className="text-[9px] font-mono tracking-[0.2em] text-white/40 uppercase">Einkehr</span>
+          <span className="text-[9px] font-mono tracking-[0.2em] text-white/40 uppercase font-mono">Contemplation</span>
           <span className="text-xs font-light text-white/60 leading-relaxed italic font-serif-instrument">
-            "Wer die Quelle sucht, muss gegen den Strom schwimmen."
+            "He who seeks the source must swim against the current."
           </span>
         </div>
 
         {/* Scroll indicator chevron prompt */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer animate-bounce"
              onClick={() => handleScrollToSection('vision-section')}>
-          <span className="text-[9px] font-mono tracking-widest text-white/45">SCROLLEN</span>
+          <span className="text-[9px] font-mono tracking-widest text-white/45">SCROLL</span>
           <ChevronDown className="text-white/60" size={16} />
         </div>
       </section>
@@ -551,7 +542,7 @@ export default function App() {
                 <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-black/5">
                   <Quote size={24} className="text-stone-300 mb-2" />
                   <p className="text-xs font-serif-instrument italic leading-relaxed text-stone-700">
-                    "Glaube ist nicht das Festhalten an Dogmen, sondern das Vertrauen in ein tragendes Fundament."
+                    "Faith is not clinging to simple dogmas, but placing complete trust in a reliable foundation."
                   </p>
                 </div>
               </div>
@@ -562,20 +553,20 @@ export default function App() {
               <div className="flex items-center gap-2">
                 <span className="h-[1px] w-8 bg-amber-800/20" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-900/60">
-                  UNSER INNERER ANTRIEB
+                  OUR INNER HEART
                 </span>
               </div>
 
               <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-[#121418]">
-                Unsere <span className="font-serif-instrument italic text-amber-900 font-normal">Vision</span>
+                Our <span className="font-serif-instrument italic text-amber-900 font-normal">Vision</span>
               </h2>
 
               <p className="text-lg md:text-xl font-light leading-relaxed text-stone-700">
-                Wir glauben an eine moderne Gestaltung des Glaubens, die mitten im Leben steht. Unser Ziel ist es, eine Brücke zu bauen – zwischen zeitlosen Werten und den Herausforderungen unserer Zeit.
+                Royal Ministry & Miracle Center is a Christ-centered ministry dedicated to teaching the Word of the Kingdom, raising spiritual growth, experiencing divine alignment, and transforming lives through the power of the Holy Spirit.
               </p>
 
               <p className="text-sm md:text-base font-light leading-relaxed text-stone-600">
-                Wir laden Sie ein, Teil einer Gemeinschaft zu sein, die Vielfalt schätzt, tiefgründige Lehre sucht und gemeinsam positive Impulse in die Welt trägt. Bei uns ist Raum für Zweifel, Fragen, stilles Suchen und leidenschaftliches Anpacken.
+                We invite you to be part of an active, loving community that actively pursues prophetic encounters, studies the Bible with profound depth, and experiences the move of the Holy Spirit in everyday church life.
               </p>
 
               <div className="pt-4 flex items-center">
@@ -586,7 +577,7 @@ export default function App() {
                   className="inline-flex items-center gap-2.5 text-xs font-mono tracking-widest uppercase font-semibold text-amber-950 hover:text-amber-800 border-b border-amber-950/40 pb-1.5 transition-all text-left"
                   id="vision-modal-trigger"
                 >
-                  Mehr über unser Fundament erfahren 
+                  Learn more about our foundation 
                   <ArrowUpRight size={14} className="text-amber-900" />
                 </button>
               </div>
@@ -594,15 +585,15 @@ export default function App() {
               {/* Core attributes bento blocks inside the Vision frame */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-stone-200">
                 <div className="p-5 rounded-2xl bg-stone-100 hover:bg-stone-200/50 transition-colors">
-                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Geistliche Tiefe</h4>
+                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Spiritual Depth</h4>
                   <p className="text-xs text-stone-500 leading-relaxed font-light">
-                    Keine oberflächlichen Antworten. Wir schätzen fundierte theologische Lehre und authentische Auseinandersetzungen.
+                    No superficial answers. We value sound theological teaching and authentic scriptural encounters.
                   </p>
                 </div>
                 <div className="p-5 rounded-2xl bg-stone-100 hover:bg-stone-200/50 transition-colors">
-                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Offene Räume</h4>
+                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Open Heart</h4>
                   <p className="text-xs text-stone-500 leading-relaxed font-light">
-                    Jeder Mensch wird in seiner Einzigartigkeit empfangen. Ein Ort, an dem Gemeinschaft gelebt wird.
+                    Every individual is welcomed with warmth and grace. A genuine place where authentic fellowship is lived out.
                   </p>
                 </div>
               </div>
@@ -626,13 +617,13 @@ export default function App() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="space-y-3">
               <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/40 block">
-                DIE BOTSCHAFT IM HERZEN
+                THE KINGDOM MESSAGE
               </span>
               <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white leading-tight">
-                Lehren & <span className="font-serif-instrument italic text-white/70 font-normal">Inspiration</span>
+                Teachings & <span className="font-serif-instrument italic text-white/70 font-normal">Inspiration</span>
               </h2>
               <p className="text-sm md:text-base text-white/50 max-w-lg font-light">
-                Aktuelle Impulse für Ihren Alltag. Klicken Sie auf „Hören“, um die interaktive Audio-Synthese direkt im Hintergrund zu spüren.
+                Spiritual growth and alignment for your everyday life. Click 'Listen' to engage with our messages.
               </p>
             </div>
 
@@ -642,7 +633,7 @@ export default function App() {
                 className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all"
                 id="medien-archive-btn"
               >
-                Ganzes Archiv laden
+                Load Full Archive
                 <ArrowRight size={12} className="text-white/60" />
               </button>
             </div>
@@ -710,7 +701,7 @@ export default function App() {
                       ) : (
                         <>
                           <Play size={10} className="ml-0.5" />
-                          <span>HÖREN</span>
+                          <span>LISTEN</span>
                         </>
                       )}
                     </button>
@@ -723,12 +714,12 @@ export default function App() {
           {/* Active play overlay message without artificial server logs */}
           {activeSermonId && (
             <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs font-mono text-white/60 animate-fade-in">
-              <span>Wiedergabe aktiv: "{SERMONS_DATA.find(s => s.id === activeSermonId)?.title}"</span>
+              <span>Playback active: "{SERMONS_DATA.find(s => s.id === activeSermonId)?.title}"</span>
               <button 
                 onClick={() => setActiveSermonId(null)}
                 className="text-white hover:underline uppercase text-[9px]"
               >
-                Schließen
+                Close
               </button>
             </div>
           )}
@@ -745,13 +736,13 @@ export default function App() {
           
           <div className="space-y-4 mb-16 text-center">
             <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-stone-500 block">
-              TERMINE & BEGEGNUNG
+              SERVICES & ENCOUNTERS
             </span>
             <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-[#121418] leading-tight">
-              Gemeinsam <span className="font-serif-instrument italic text-amber-900 font-normal">unterwegs</span>
+              Walking <span className="font-serif-instrument italic text-amber-900 font-normal">Together</span>
             </h2>
             <p className="text-stone-600 max-w-xl mx-auto font-light leading-relaxed">
-              Ob persönliche Begegnungen oder offene Community-Abende – finden Sie hier den passenden Format für Ihren nächsten Schritt.
+              Join us in our weekly church services or life group chapters. Experience powerful encounters and active church life.
             </p>
           </div>
 
@@ -792,7 +783,7 @@ export default function App() {
                     <div className="flex items-center gap-3 self-end lg:self-center">
                       {hasRsvp && (
                         <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-mono text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-md">
-                          <CheckCircle size={10} /> DABEISEIN
+                          <CheckCircle size={10} /> ATTENDING
                         </span>
                       )}
                       
@@ -804,7 +795,7 @@ export default function App() {
                         className="px-4 py-2 rounded-full border border-stone-300 hover:border-stone-900 text-xs text-[#121418] font-medium bg-white hover:bg-stone-50 transition-colors"
                         id={`event-toggle-${evo.id}`}
                       >
-                        {isExpanded ? 'Einklappen' : 'Details'}
+                        {isExpanded ? 'Collapse' : 'Details'}
                       </button>
                     </div>
                   </div>
@@ -816,7 +807,7 @@ export default function App() {
                         <div className="flex items-center gap-2">
                           <Clock size={14} className="text-stone-400" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Uhrzeit:</span>
+                            <span className="block font-semibold text-[#121418]">Time:</span>
                             <span>{evo.time}</span>
                           </div>
                         </div>
@@ -824,7 +815,7 @@ export default function App() {
                         <div className="flex items-center gap-2">
                           <MapPin size={14} className="text-stone-400" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Ort:</span>
+                            <span className="block font-semibold text-[#121418]">Location:</span>
                             <span>{evo.location}</span>
                           </div>
                         </div>
@@ -832,14 +823,14 @@ export default function App() {
                         <div className="flex items-center gap-2">
                           <Calendar size={14} className="text-stone-400" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Verfügbarkeit:</span>
-                            <span>{evo.slotsRemaining} Plätze unbesetzt</span>
+                            <span className="block font-semibold text-[#121418]">Availability:</span>
+                            <span>{evo.slotsRemaining} seats available</span>
                           </div>
                         </div>
                       </div>
 
                       <p className="text-sm font-light text-stone-700 leading-relaxed border-t border-stone-200/50 pt-4">
-                        {evo.subtitle} Kommen Sie gerne ungezwungen vorbei. Für Fragen oder barrierefreien Zugang wenden Sie sich an die Gemeinde-Koordinatoren über unser Briefkastenfeld.
+                        {evo.subtitle} Feel free to visit us. For questions or accessibility options, reach out to our team coordinators anytime through our contact modal.
                       </p>
 
                       <div className="flex flex-wrap gap-2.5 pt-2">
@@ -852,13 +843,13 @@ export default function App() {
                           }`}
                           id={`rsvp-action-${evo.id}`}
                         >
-                          {hasRsvp ? 'Teilnahme stornieren' : 'Einschreiben & Anmelden'}
+                          {hasRsvp ? 'Cancel RSVP' : 'Register & Attend'}
                         </button>
                         <button 
                           onClick={() => selectTab('EVENTS')}
                           className="px-4 py-2.5 text-xs font-mono tracking-wider uppercase text-[#121418]/60 hover:text-[#121418] transition-colors"
                         >
-                          Mehr erfahren
+                          Learn More
                         </button>
                       </div>
                     </div>
@@ -890,10 +881,10 @@ export default function App() {
                   <CheckCircle size={32} className="text-white fill-white/10" />
                 </div>
                 <h3 className="text-2xl font-serif-instrument italic font-normal text-white">
-                  Erfolgreich angemeldet.
+                  Successfully Subscribed.
                 </h3>
                 <p className="text-sm font-light text-white/60 max-w-md mx-auto leading-relaxed">
-                  Vielen Dank für das Vertrauen. Wir haben Ihnen eine wunderbare Begrüßungs-Nachricht mit ersten theologischen Skizzen an Ihre Postadresse gesendet.
+                  Thank you for your trust. We have sent you a welcoming email with teachings and insights to get connected.
                 </p>
                 <div className="pt-4">
                   <button 
@@ -903,7 +894,7 @@ export default function App() {
                     }}
                     className="text-white/40 hover:text-white transition-colors text-xs font-mono tracking-widest uppercase"
                   >
-                    Neue E-Mail eintragen
+                    Enter another email
                   </button>
                 </div>
               </div>
@@ -912,13 +903,13 @@ export default function App() {
               <div className="space-y-6 text-center md:text-left">
                 <div className="max-w-xl space-y-3">
                   <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/40 block">
-                    GEMEINSCHAFTS-NEWSLETTER
+                    MINISTRY NEWSLETTER
                   </span>
                   <h3 className="text-3xl font-sans font-light tracking-tight text-white">
-                    Verbunden <span className="font-serif-instrument italic text-white/70 font-normal">bleiben</span>
+                    Stay <span className="font-serif-instrument italic text-white/70 font-normal">Connected</span>
                   </h3>
                   <p className="text-xs md:text-sm font-light text-white/55 leading-relaxed">
-                    Erhalten Sie Impulse, Event-Updates und Einladungen direkt in Ihr Postfach. Kein Spam – nur wertvolle Inhalte.
+                    Receive spiritual insights, event updates, and invitations directly in your inbox. No spam – only valuable inspiration.
                   </p>
                 </div>
 
@@ -929,7 +920,7 @@ export default function App() {
                       <input 
                         type="email" 
                         required
-                        placeholder="Ihre E-Mail-Adresse..." 
+                        placeholder="Your email address..." 
                         value={newsletterEmail}
                         onChange={(e) => setNewsletterEmail(e.target.value)}
                         className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-white/40 focus:bg-white/10 outline-none rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-white/35 transition-all"
@@ -942,12 +933,12 @@ export default function App() {
                       id="newsletter-submit-btn"
                     >
                       <Send size={12} />
-                      <span>Jetzt anmelden</span>
+                      <span>Subscribe Now</span>
                     </button>
                   </div>
 
                   <p className="text-[10px] text-white/30 font-mono text-center sm:text-left">
-                    * DSGVO-konforme Datenverarbeitung • jederzeit mit einem Klick kündbar.
+                    * GDPR-compliant data processing • unsubscribe at any time with one click.
                   </p>
                 </form>
               </div>
@@ -972,11 +963,11 @@ export default function App() {
                 <sup className="text-[9px] font-mono text-white/40 font-medium">TM</sup>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-sm">
-                Royal Ministry steht für Klarheit, Gemeinschaft und geistliches Wachstum. Ein sicherer Hafen in einer beschleunigten Welt.
+                Royal Ministry stands for clarity, community, and spiritual growth. A safe harbor in a fast-paced world.
               </p>
               <div className="flex items-center gap-1.5 text-xs text-stone-500 py-1 font-mono">
                 <Shield size={13} />
-                <span>DSGVO-konforme Seelsorge</span>
+                <span>GDPR-compliant ministry</span>
               </div>
             </div>
 
@@ -992,7 +983,7 @@ export default function App() {
                     className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
                     id="footer-nav-hero"
                   >
-                    Startseite
+                    Home
                   </button>
                 </li>
                 <li>
@@ -1001,7 +992,7 @@ export default function App() {
                     className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
                     id="footer-nav-vision"
                   >
-                    Unsere Vision & Fundament
+                    Our Vision & Foundation
                   </button>
                 </li>
                 <li>
@@ -1010,7 +1001,7 @@ export default function App() {
                     className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
                     id="footer-nav-medien"
                   >
-                    Predigten & Lehren
+                    Sermons & Teachings
                   </button>
                 </li>
                 <li>
@@ -1019,7 +1010,7 @@ export default function App() {
                     className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
                     id="footer-nav-events"
                   >
-                    Veranstaltungen & Termine
+                    Events & Encounters
                   </button>
                 </li>
               </ul>
@@ -1028,27 +1019,39 @@ export default function App() {
             {/* Col 3 right legal details */}
             <div className="md:col-span-4 space-y-3 text-xs">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#B3B5B9] block font-bold">
-                Rechtliches
+                Legal
               </span>
               <ul className="space-y-2">
                 <li>
-                  <a href="#impressum" className="hover:text-white transition-colors text-stone-500 text-left block">
-                    Impressum
-                  </a>
+                  <button 
+                    onClick={() => selectTab('COMMUNITY')}
+                    className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
+                  >
+                    Imprint
+                  </button>
                 </li>
                 <li>
-                  <a href="#datenschutz" className="hover:text-white transition-colors text-stone-500 text-left block">
-                    Datenschutzbestimmungen
-                  </a>
+                  <button 
+                    onClick={() => selectTab('COMMUNITY')}
+                    className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
+                  >
+                    Privacy Policy
+                  </button>
                 </li>
                 <li>
-                  <a href="#cookies" className="hover:text-white transition-colors text-stone-500 text-left block">
-                    Cookie-Einstellungen
-                  </a>
+                  <button 
+                    onClick={() => selectTab('COMMUNITY')}
+                    className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
+                  >
+                    Cookie Settings
+                  </button>
                 </li>
                 <li>
                   <span className="text-[10px] text-stone-600 block pt-1">
-                    Kanzlei: kanzlei@royal-ministry.org
+                    Email: Isaacmahugnon23@web.de
+                  </span>
+                  <span className="text-[10px] text-stone-600 block font-mono">
+                    Tel/WhatsApp: +49 152 152 377 11
                   </span>
                 </li>
               </ul>
@@ -1059,11 +1062,11 @@ export default function App() {
           {/* Core copyright tagline block */}
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-[#4C4E53]">
             <span>
-              &copy; {new Date().getFullYear()} Royal Ministry. Alle Rechte vorbehalten.
+              &copy; {new Date().getFullYear()} Royal Ministry. All rights reserved.
             </span>
             <div className="flex items-center gap-3">
               <span className="inline-block w-2 h-2 bg-emerald-500/80 rounded-full" />
-              <span>Glaube & Stille im Herzen</span>
+              <span>Faith & Grace in the Kingdom</span>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { X, Lock, Sparkles, BookOpen, Compass, ArrowLeft, ArrowRight, Check, Shield, AlertCircle } from 'lucide-react';
+import { X, Sparkles, BookOpen, Compass, ArrowLeft, ArrowRight, Check, Shield } from 'lucide-react';
 import { MinistryPillar } from '../types';
 
 interface PlanEscapeModalProps {
@@ -84,7 +84,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
 
   const triggerItineraryGeneration = () => {
     if (!userName.trim() || !userEmail.includes('@')) {
-      alert('Bitte geben Sie einen gültigen Namen und eine E-Mail-Adresse ein, um Ihren geistlichen Wegweiser zu sichern.');
+      alert('Please enter a valid name and email address to secure your customized plan.');
       return;
     }
     setIsGenerating(true);
@@ -132,7 +132,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
           onClick={handleClose}
           className="absolute top-6 right-6 p-2 rounded-full cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-colors"
           id="close-modal-btn"
-          aria-label="Schließen"
+          aria-label="Close"
         >
           <X size={18} />
         </button>
@@ -145,10 +145,10 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
               <div className="absolute inset-0 bg-white/10 blur-xl rounded-full scale-150 animate-pulse" />
             </div>
             <h3 className="text-2xl font-light tracking-tight font-sans mb-3 text-white">
-              Erstelle deinen persönlichen Wegweiser...
+              Creating your custom guidance path...
             </h3>
             <p className="text-sm font-light text-white/50 max-w-sm mb-8">
-              Kombiniere theologische Tiefe mit deinem gewählten Rhythmus ({focusLevel === 1 ? 'Vollkommene Stille' : focusLevel === 5 ? 'Aktive Mission' : 'Ausgewogener Dialog'}).
+              Combining scriptural depth with your chosen rhythm ({focusLevel === 1 ? 'Contemplation' : focusLevel === 5 ? 'Active walk' : 'Balanced fellowship'}).
             </p>
             <div className="w-full max-w-md h-1.5 bg-white/10 rounded-full overflow-hidden">
               <div 
@@ -157,7 +157,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
               />
             </div>
             <div className="text-xs font-mono text-white/40 mt-3">
-              {generationProgress}% SECURE GEMEINSCHAFTS-DOCK VERBUNDEN
+              {generationProgress}% SECURE NETWORK CONNECTION ESTABLISHED
             </div>
           </div>
         ) : completedPlan ? (
@@ -165,45 +165,45 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
           <div className="py-6 transition-all duration-500">
             <div className="flex items-center gap-3 mb-6 text-white text-xs tracking-widest font-mono">
               <Sparkles className="text-white fill-white/10" size={14} />
-              <span>DRAFT ERFOLGREICH GENERIERT</span>
+              <span>GUIDE SUCCESSFULLY GENERATED</span>
             </div>
 
             <h3 className="text-3xl font-light font-sans tracking-tight leading-tight mb-2 text-white">
-              Hallo, <span className="font-medium underline decoration-white/30">{userName}</span>.<br />
-              Dein geistlicher Wegweiser ist bereit.
+              Hello, <span className="font-medium underline decoration-white/30">{userName}</span>.<br />
+              Your spiritual roadmap is ready.
             </h3>
 
             <p className="text-white/60 font-light text-sm mb-6 max-w-lg leading-relaxed">
-              Wir haben einen persönlichen {durationWeeks}-Wochen-Rhythmus für dich in der Sparte <span className="text-white font-medium">{currentPillar?.title}</span> erstellt. Deine persönliche Verschlüsselungs-PDF wurde verschickt an <span className="text-white font-medium">{userEmail}</span>.
+              We have generated a custom {durationWeeks}-week roadmap focusing on <span className="text-white font-medium">{currentPillar?.title}</span>. It has been secured and sent to <span className="text-white font-medium">{userEmail}</span>.
             </p>
 
             {/* Simulated Live Itinerary Outline */}
             <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 mb-8 text-left">
               <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
                 <div>
-                  <div className="text-[10px] uppercase tracking-widest text-white/40 font-mono">Gewählter Pfad</div>
+                  <div className="text-[10px] uppercase tracking-widest text-white/40 font-mono">Chosen Focus</div>
                   <div className="text-[15px] font-medium mt-1">{currentPillar?.title}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-[10px] uppercase tracking-widest text-white/40 font-mono">Fokus-Gruppe</div>
-                  <div className="text-[15px] font-medium text-white mt-1">
-                    {focusLevel <= 2 ? 'Innere Einkehr & Meditation' : focusLevel >= 4 ? 'Praktisches Christsein' : 'Theologischer Studierkreis'}
+                <div>
+                  <div className="text-[10px] uppercase tracking-widest text-white/40 font-mono text-right">Rhythm Group</div>
+                  <div className="text-[15px] font-medium text-white mt-1 text-right">
+                    {focusLevel <= 2 ? 'Quiet Prayer & Word Meditation' : focusLevel >= 4 ? 'Church Integration & Activation' : 'Kingdom Study & Action'}
                   </div>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <div className="text-xs font-semibold text-white/80">Woche 1: Stille & Fundament legen</div>
-                  <p className="text-xs text-white/50 mt-1">Etablierung einer täglichen Stille-Zeit am Morgen (15 Min.) und Fokussierung auf {currentPillar?.activities[0]}.</p>
+                  <div className="text-xs font-semibold text-white/80">Week 1: Quiet Foundations</div>
+                  <p className="text-xs text-white/50 mt-1">Establishing custom daily study time (15 mins) and key focus on: {currentPillar?.activities[0]}.</p>
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-white/80">Woche 2-{durationWeeks - 1}: Austausch & Dialog</div>
-                  <p className="text-xs text-white/50 mt-1">Dialog im wöchentlichen Hauskreis und Mentoring zu Glaubensfragen. Fokus: {currentPillar?.activities[1]}.</p>
+                  <div className="text-xs font-semibold text-white/80">Weeks 2-{durationWeeks - 1}: Mentorship & Life Group</div>
+                  <p className="text-xs text-white/50 mt-1">Connecting with scripture analysis and online fellowship resources. Focus on: {currentPillar?.activities[1]}.</p>
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-white/80">Woche {durationWeeks}: Sendung & Segen</div>
-                  <p className="text-xs text-white/50 mt-1">Gelebte Nächstenliebe im Alltag, Reflexionstermin mit eurem geistlichen Coach.</p>
+                  <div className="text-xs font-semibold text-white/80">Week {durationWeeks}: Action & Activation</div>
+                  <p className="text-xs text-white/50 mt-1">Walking out Kingdom principles in daily interactions and spiritual breakthroughs.</p>
                 </div>
               </div>
             </div>
@@ -211,14 +211,14 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-between pt-4 border-t border-white/5">
               <div className="flex items-center gap-2 text-white/40 text-[10px] font-mono">
                 <Shield size={12} />
-                <span>SSL GEBÄNDEWEITER WEGWEISER ENCRYPTIERT</span>
+                <span>SECURE END-TO-END NETWORK CONNECTION</span>
               </div>
               <button 
                 onClick={handleClose}
                 className="w-full sm:w-auto px-6 py-2.5 bg-white text-black text-xs tracking-wider uppercase font-medium rounded-full cursor-pointer hover:scale-[1.03] active:scale-[0.97] transition-all"
                 id="modal-finish-btn"
               >
-                Portal Schließen
+                Close Portal
               </button>
             </div>
           </div>
@@ -227,25 +227,25 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
           <div>
             {/* Step Indicators */}
             <div className="flex items-center gap-2 mb-8 text-white/30 text-[10px] font-mono uppercase tracking-widest">
-              <span>WEGWEISER ENTWERFEN</span>
+              <span>DESIGN ROADMAP</span>
               <span>/</span>
-              <span className={step >= 1 ? 'text-white font-bold' : ''}>01 Fokus</span>
+              <span className={step >= 1 ? 'text-white font-bold' : ''}>01 Focus</span>
               <span>/</span>
-              <span className={step >= 2 ? 'text-white font-bold' : ''}>02 Ausrichtung</span>
+              <span className={step >= 2 ? 'text-white font-bold' : ''}>02 Rhythm</span>
               <span>/</span>
-              <span className={step >= 3 ? 'text-white font-bold' : ''}>03 Dauer</span>
+              <span className={step >= 3 ? 'text-white font-bold' : ''}>03 Duration</span>
               <span>/</span>
-              <span className={step >= 4 ? 'text-white font-bold' : ''}>04 Absichern</span>
+              <span className={step >= 4 ? 'text-white font-bold' : ''}>04 Finalize</span>
             </div>
 
             {/* STEP 1: FOCUS AREA */}
             {step === 1 && (
               <div>
                 <h4 className="text-3xl font-light font-sans tracking-tight leading-tight mb-2 text-white">
-                  Welcher Schwerpunkt ruft dich?
+                  Which focus speaks to you?
                 </h4>
                 <p className="text-sm font-light text-white/50 mb-6">
-                  Wähle ein Fundament, das deinem aktuellen geistlichen Stand entspricht.
+                  Select a spiritual pillar that matches your heart's desire right now.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[300px] overflow-y-auto pr-2">
@@ -292,17 +292,17 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
             {step === 2 && (
               <div>
                 <h4 className="text-3xl font-light font-sans tracking-tight leading-tight mb-2 text-white">
-                  Definiere deinen geistlichen Alltags-Rhythmus.
+                  Define your spiritual rhythm.
                 </h4>
                 <p className="text-sm font-light text-white/50 mb-10">
-                  Wähle die Intensität des wöchentlichen Programms (Gespräche, stille Übung, Aktion).
+                  Select your current rhythm intensity (quiet meditation vs active study & activation).
                 </p>
 
                 <div className="py-8 px-4 bg-white/[0.02] border border-white/5 rounded-3xl relative">
                   <div className="flex justify-between text-xs font-mono tracking-widest text-white/40 mb-6">
-                    <span>PILGERSTILLE</span>
-                    <span>AUSGEWOGEN</span>
-                    <span>AKTIVE MISSION</span>
+                    <span>QUIET DEVOTION</span>
+                    <span>BALANCED INSIGHTS</span>
+                    <span>ACTIVE EMPOWERMENT</span>
                   </div>
 
                   <input 
@@ -315,13 +315,13 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                   />
 
                   <div className="mt-8 text-center">
-                    <span className="text-[11px] font-mono tracking-[0.2em] text-white/40 uppercase block">Ausgewählte Stufe</span>
-                    <span className="text-2xl font-light tracking-wide text-white mt-1 block">
-                      {focusLevel === 1 && 'Stufe 01 — Fokussiert auf Schweigen, Solitärgebet & Natur'}
-                      {focusLevel === 2 && 'Stufe 02 — Wöchentliche Liturgie & tägliche Bibelmeditation'}
-                      {focusLevel === 3 && 'Stufe 03 — Mittlerer Weg: Dialog, Bibellese & Hauskreis'}
-                      {focusLevel === 4 && 'Stufe 04 — Aktive Nächstenliebe-Projekte & Dialoge'}
-                      {focusLevel === 5 && 'Stufe 05 — Fundierte theologische Lehre, Mission & Leitung'}
+                    <span className="text-[11px] font-mono tracking-[0.2em] text-white/40 uppercase block">Selected Level</span>
+                    <span className="text-lg font-light tracking-wide text-white mt-1 block">
+                      {focusLevel === 1 && 'Level 01 — Focused on quietness, solitude & devotion'}
+                      {focusLevel === 2 && 'Level 02 — Weekly services & basic study reflection'}
+                      {focusLevel === 3 && 'Level 03 — Balanced integration: study, prayer & active fellowship'}
+                      {focusLevel === 4 && 'Level 04 — Active devotion walk & mentorship interactions'}
+                      {focusLevel === 5 && 'Level 05 — Full integration: Kingdom School study, prayer cycles & mentorship'}
                     </span>
                   </div>
                 </div>
@@ -332,10 +332,10 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
             {step === 3 && (
               <div>
                 <h4 className="text-3xl font-light font-sans tracking-tight leading-tight mb-2 text-white">
-                  Wie viele Wochen möchtest du dich binden?
+                  How many weeks would you like to dedicate?
                 </h4>
                 <p className="text-sm font-light text-white/50 mb-8">
-                  Jede Stufe baut aufeinander auf. Ein stabiler Zyklus sorgt für langlebige Gewohnheiten.
+                  Commitment builds deep spiritual muscle. A dedicated cycle establishes lasting alignment.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6 justify-center py-6">
@@ -348,7 +348,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                     </button>
                     <div className="text-center min-w-[124px]">
                       <span className="text-5xl font-light font-sans tracking-tight display-block">{durationWeeks}</span>
-                      <span className="text-[10px] font-mono tracking-[0.2em] text-white/40 block mt-1">WOCHEN DER BEGLEITUNG</span>
+                      <span className="text-[10px] font-mono tracking-[0.2em] text-white/40 block mt-1">WEEKS OF GUIDANCE</span>
                     </div>
                     <button 
                       onClick={() => setDurationWeeks(w => Math.min(12, w + 1))}
@@ -360,7 +360,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                 </div>
 
                 <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl text-center text-xs font-light text-white/55 mt-4">
-                  "Ein {durationWeeks}-Wochen-Zyklus ist ideal für eine tiefgreifende theologische Weichenstellung im Alltag."
+                  "A {durationWeeks}-week roadmap is perfect to firmly anchor yourself in divine truth and deep spiritual fellowship."
                 </div>
               </div>
             )}
@@ -369,18 +369,18 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
             {step === 4 && (
               <div>
                 <h4 className="text-3xl font-light font-sans tracking-tight leading-tight mb-2 text-white">
-                  Verschlüsselte Anmeldung sichern.
+                  Secure your road blueprint.
                 </h4>
                 <p className="text-sm font-light text-white/50 mb-6">
-                  Wir schätzen Ihre Daten. Keine Werbung, keine Profilerstellung, zero Leaks.
+                  Your privacy is highly valued. We respect your security. No spam, end-to-end alignment.
                 </p>
 
                 <div className="space-y-4 max-w-md mx-auto">
                   <div className="flex flex-col gap-1.5 text-left">
-                    <label className="text-xs uppercase tracking-widest font-mono text-white/40">Ihr vollständiger Name</label>
+                    <label className="text-xs uppercase tracking-widest font-mono text-white/40">Your Full Name</label>
                     <input 
                       type="text" 
-                      placeholder="z.B. Alexis Thorne"
+                      placeholder="e.g. Alexis Thorne"
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-white/60 focus:bg-white/10 outline-none rounded-xl px-4 py-3 placeholder-white/20 text-white text-sm transition-all"
@@ -388,10 +388,10 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                   </div>
 
                   <div className="flex flex-col gap-1.5 text-left">
-                    <label className="text-xs uppercase tracking-widest font-mono text-white/40">Sichere E-Mail-Adresse</label>
+                    <label className="text-xs uppercase tracking-widest font-mono text-white/40">Secure Email Address</label>
                     <input 
                       type="email" 
-                      placeholder="z.B. alexis@haven.de"
+                      placeholder="e.g. alexis@example.com"
                       value={userEmail}
                       onChange={(e) => setUserEmail(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-white/60 focus:bg-white/10 outline-none rounded-xl px-4 py-3 placeholder-white/20 text-white text-sm transition-all"
@@ -413,7 +413,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                 }`}
                 id="modal-back-btn"
               >
-                <ArrowLeft size={14} /> Zurück
+                <ArrowLeft size={14} /> Back
               </button>
 
               <button
@@ -426,7 +426,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                 }`}
                 id="modal-next-btn"
               >
-                {step === 4 ? 'Wegweiser Verschlüsseln' : 'Weiter'} <ArrowRight size={14} />
+                {step === 4 ? 'Secure Roadmap' : 'Next'} <ArrowRight size={14} />
               </button>
             </div>
           </div>
