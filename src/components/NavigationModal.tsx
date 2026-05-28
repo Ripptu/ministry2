@@ -190,7 +190,7 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
         <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
           <div className="flex items-center gap-3">
             <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-mono">
-              WANDERFUL SANCTUARY PORTAL
+              ROYAL MINISTRY PORTAL
             </span>
             <span className="text-white/20">|</span>
             <span className="text-xs uppercase tracking-widest text-white/80 font-mono font-medium">
@@ -222,7 +222,7 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                   Unsere Vision für tiefe geistliche Einkehr.
                 </h3>
                 <p className="text-sm font-light text-white/60 leading-relaxed">
-                  In einer Ära des konstanten Rauschens sehnen wir uns nach der Stille, in der Gott spricht. Wanderful ist kein bloßes Portal, sondern ein Digitaler Altar und Wegweiser zu echter Hingabe, theologischer Klarheit und geistlicher Erneuerung.
+                  In einer Ära des konstanten Rauschens sehnen wir uns nach der Stille, in der Gott spricht. Royal Ministry ist kein bloßes Portal, sondern ein Digitaler Altar und Wegweiser zu echter Hingabe, theologischer Klarheit und geistlicher Erneuerung.
                 </p>
               </div>
 
@@ -459,7 +459,7 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                   <div className="space-y-3 pt-2">
                     <div className="flex items-center gap-3 text-xs text-white/60">
                       <Mail size={13} className="text-white/40" />
-                      <span>kanzlei@wanderful-sanctuary.org</span>
+                      <span>kanzlei@royal-ministry.org</span>
                     </div>
                     <div className="flex items-center gap-3 text-xs text-white/60">
                       <Users size={13} className="text-white/40" />

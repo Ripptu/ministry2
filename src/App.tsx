@@ -126,7 +126,7 @@ const EVENTS_DATA: CommunityEvent[] = [
     title: 'Community Dinner',
     subtitle: 'Ein Abend voller herzlicher Gespräche, feinem Essen und ungezwungener Gemeinschaft.',
     time: '18:30 - 21:30 Uhr',
-    location: 'Wanderful Refugium, Hauptsaal',
+    location: 'Royal Ministry Refugium, Hauptsaal',
     slotsRemaining: 8
   },
   {
@@ -277,7 +277,7 @@ export default function App() {
     <div 
       className="relative min-h-screen w-full bg-black text-white selection:bg-white selection:text-black"
       style={{ fontFamily: "'Inter', sans-serif" }}
-      id="wanderful-root"
+      id="royal-ministry-root"
     >
       {/* 1. STICKY HEADER GLOBAL PANEL */}
       <header 
@@ -293,7 +293,7 @@ export default function App() {
           className="flex items-baseline gap-0.5 cursor-pointer group z-50"
         >
           <span className="text-[19px] tracking-tight font-sans font-semibold text-white group-hover:text-white/80 transition-colors">
-            Wanderful
+            Royal Ministry
           </span>
           <sup className="text-[9px] font-mono font-medium text-white/40 tracking-widest uppercase">
             TM
@@ -429,7 +429,7 @@ export default function App() {
           </nav>
           
           <div className="text-center text-[10px] font-mono text-white/20 tracking-widest">
-            WANDERFUL — GRENZENLOS GLAUBEN
+            ROYAL MINISTRY — GRENZENLOS GLAUBEN
           </div>
         </div>
       )}
@@ -471,7 +471,7 @@ export default function App() {
           <div className="flex justify-center items-center gap-2 mb-4">
             <Sparkles className="text-white/70 animate-pulse" size={16} />
             <span className="text-[10px] md:text-xs font-mono tracking-[0.25em] text-white/50 uppercase">
-              WILLKOMMEN BEI WANDERFUL
+              WILLKOMMEN BEI ROYAL MINISTRY
             </span>
           </div>
 
@@ -968,11 +968,11 @@ export default function App() {
             {/* Col 1 left brand and tagline */}
             <div className="md:col-span-5 space-y-4">
               <div className="flex items-baseline gap-0.5 text-white">
-                <span className="text-[20px] font-sans font-bold tracking-tight">Wanderful</span>
+                <span className="text-[20px] font-sans font-bold tracking-tight">Royal Ministry</span>
                 <sup className="text-[9px] font-mono text-white/40 font-medium">TM</sup>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-sm">
-                Wanderful steht für Klarheit, Gemeinschaft und geistliches Wachstum. Ein sicherer Hafen in einer beschleunigten Welt.
+                Royal Ministry steht für Klarheit, Gemeinschaft und geistliches Wachstum. Ein sicherer Hafen in einer beschleunigten Welt.
               </p>
               <div className="flex items-center gap-1.5 text-xs text-stone-500 py-1 font-mono">
                 <Shield size={13} />
@@ -1048,7 +1048,7 @@ export default function App() {
                 </li>
                 <li>
                   <span className="text-[10px] text-stone-600 block pt-1">
-                    Kanzlei: kanzlei@wanderful-sanctuary.org
+                    Kanzlei: kanzlei@royal-ministry.org
                   </span>
                 </li>
               </ul>
@@ -1059,7 +1059,7 @@ export default function App() {
           {/* Core copyright tagline block */}
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-[#4C4E53]">
             <span>
-              &copy; {new Date().getFullYear()} Wanderful Sanctuary Organization. All rights reserved.
+              &copy; {new Date().getFullYear()} Royal Ministry. Alle Rechte vorbehalten.
             </span>
             <div className="flex items-center gap-3">
               <span className="inline-block w-2 h-2 bg-emerald-500/80 rounded-full" />
