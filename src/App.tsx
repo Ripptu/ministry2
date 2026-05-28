@@ -281,11 +281,7 @@ export default function App() {
     >
       {/* 1. STICKY HEADER GLOBAL PANEL */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-5 flex justify-between items-center transition-all duration-300 ${
-          scrolled 
-            ? 'bg-[#121418]/90 backdrop-blur-[10px] py-4 shadow-lg border-b border-white/5' 
-            : 'bg-transparent py-7'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-5 md:py-6 flex justify-between items-center bg-transparent transition-all duration-300"
         id="header"
       >
         {/* Brand Wordmark Left */}
@@ -304,9 +300,9 @@ export default function App() {
           </sup>
         </div>
 
-        {/* Center Liquid-glass Navigation bar (Desktop) */}
+        {/* Center Liquid-glass Navigation bar (Desktop) styled like a Dynamic Island */}
         <nav 
-          className="hidden md:flex liquid-glass rounded-full px-2 py-1.5 items-center gap-1 border border-white/10"
+          className="hidden md:flex liquid-glass rounded-full px-3 py-2 items-center gap-1 bg-black/60 backdrop-blur-xl shadow-2xl"
           id="nav-links"
         >
           <button
