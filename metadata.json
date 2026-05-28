@@ -1,0 +1,6 @@
+{
+  "name": "Wanderful",
+  "description": "Full-viewport cinematic hero-section for the Wanderful travel brand.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
