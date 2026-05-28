@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import gsap from 'gsap';
 import { 
   Lock, 
@@ -149,12 +150,112 @@ const EVENTS_DATA: CommunityEvent[] = [
   }
 ];
 
+const Sermon3DCard = ({ sermon, isPlaying, handleTogglePlaySermon }: { sermon: SermonCard; isPlaying: boolean; handleTogglePlaySermon: (s: SermonCard) => void }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width - 0.5);
+    y.set(mouseY / height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative p-8 rounded-[24px] bg-[#1a1715] border transition-all duration-300 min-h-[300px] flex flex-col justify-between ${
+        isPlaying 
+          ? 'border-white/50 shadow-[0_0_40px_rgba(255,255,255,0.08)]' 
+          : 'border-white/5 hover:border-white/20'
+      }`}
+      id={`sermon-card-${sermon.id}`}
+    >
+      <div 
+        className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-white/30 to-transparent" 
+        style={{ transform: "translateZ(20px)" }} 
+      />
+      
+      <div className="space-y-4" style={{ transform: "translateZ(30px)" }}>
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-mono tracking-wider text-white/40 uppercase bg-white/5 px-2.5 py-1 rounded">
+            {sermon.category}
+          </span>
+          {isPlaying && (
+            <div className="flex gap-0.5 items-end h-3">
+              <span className="w-0.5 h-3 bg-white animate-bounce" style={{ animationDelay: '0s' }} />
+              <span className="w-0.5 h-1.5 bg-white animate-bounce" style={{ animationDelay: '0.1s' }} />
+              <span className="w-0.5 h-2.5 bg-white animate-bounce" style={{ animationDelay: '0.2s' }} />
+            </div>
+          )}
+        </div>
+
+        <h3 className="text-xl font-medium tracking-tight text-white/95 group-hover:text-white transition-colors">
+          {sermon.title}
+        </h3>
+        
+        <p className="text-xs text-white/65 font-light leading-relaxed">
+          {sermon.description}
+        </p>
+      </div>
+
+      <div className="pt-6 border-t border-white/5 flex items-center justify-between" style={{ transform: "translateZ(40px)" }}>
+        <span className="text-[11px] font-mono text-white/40">{sermon.speaker}</span>
+        
+        <button
+          onClick={() => handleTogglePlaySermon(sermon)}
+          className={`h-9 w-24 rounded-full flex items-center justify-center gap-1 text-[11px] font-mono tracking-widest uppercase transition-all ${
+            isPlaying 
+              ? 'bg-amber-900 text-white font-semibold shadow-lg' 
+              : 'bg-white/10 hover:bg-white text-white hover:text-black'
+          }`}
+          id={`play-button-${sermon.id}`}
+        >
+          {isPlaying ? (
+            <>
+              <Pause size={10} fill="currentColor" />
+              <span>STOP</span>
+            </>
+          ) : (
+            <>
+              <Play size={10} className="ml-0.5" />
+              <span>LISTEN</span>
+            </>
+          )}
+        </button>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function App() {
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<ActiveTab>(null);
   const [isPlanOpen, setIsPlanOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const lastScrollY = useRef(0);
 
   // Interactive UI states
   const [activeSermonId, setActiveSermonId] = useState<string | null>(null);
@@ -175,14 +276,22 @@ export default function App() {
     setMounted(true);
     
     const handleScroll = () => {
-      if (window.scrollY > 80) {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 80) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 150) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY.current) {
+        setScrollDirection('up');
+      }
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -272,7 +381,7 @@ export default function App() {
     >
       {/* 1. STICKY HEADER GLOBAL PANEL */}
       <header 
-        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-5 md:py-6 flex justify-between items-center bg-transparent transition-all duration-300"
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-5 md:py-6 flex justify-between items-center bg-transparent transition-all duration-300 ${scrollDirection === 'down' ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'} ${scrolled && scrollDirection === 'up' ? 'bg-black/90 backdrop-blur-xl border-b border-white/5 py-3 md:py-4' : ''}`}
         id="header"
       >
         {/* Brand Wordmark Left */}
@@ -360,7 +469,7 @@ export default function App() {
 
       {/* MOBILE NAV DRAWER OVERLAY */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#121418]/98 backdrop-blur-xl flex flex-col justify-between pt-28 px-6 pb-12 animate-[fadeIn_0.2s_ease-out] md:hidden">
+        <div className="fixed inset-0 z-40 bg-[#121110]/98 backdrop-blur-xl flex flex-col justify-between pt-28 px-6 pb-12 animate-[fadeIn_0.2s_ease-out] md:hidden">
           <nav className="flex flex-col gap-5 text-center">
             <button
               onClick={() => {
@@ -516,9 +625,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. VISION-SEKTION (Hintergrund: Weiß/Creme für extrem glanzvollen Kontrast) */}
+      {/* 3. VISION-SEKTION */}
       <section 
-        className="relative py-24 md:py-32 bg-[#F9F7F2] text-[#121418] z-30 overflow-hidden"
+        className="relative py-24 md:py-32 bg-[#1a1715] text-[#f9f9f9] z-30 overflow-hidden"
         id="vision-section"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -530,18 +639,18 @@ export default function App() {
               <div className="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full pointer-events-none" />
               
               {/* High-res luxurious architectural shadow image */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-2xl border border-black/5" id="vision-photo-wrap">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-2xl border border-white/5" id="vision-photo-wrap">
                 <img 
-                  src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop" 
+                  src="https://theroyalministry.org/wp-content/uploads/2019/11/z2-slider1.jpg"
                   alt="Minimalist Spiritual Sacred Wood and Concrete Architecture Shadow"
                   className="w-full h-full object-cover hover:scale-[1.04] transition-transform duration-1000"
                   referrerPolicy="no-referrer"
                 />
                 
                 {/* Embedded Quote Graphic inside the column frame */}
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-black/5">
-                  <Quote size={24} className="text-stone-300 mb-2" />
-                  <p className="text-xs font-serif-instrument italic leading-relaxed text-stone-700">
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#131110]/95 backdrop-blur-md rounded-2xl border border-white/10">
+                  <Quote size={24} className="text-stone-500 mb-2" />
+                  <p className="text-xs font-serif-instrument italic leading-relaxed text-stone-300">
                     "Faith is not clinging to simple dogmas, but placing complete trust in a reliable foundation."
                   </p>
                 </div>
@@ -551,21 +660,21 @@ export default function App() {
             {/* Right column description narrative of vision statement */}
             <div className="lg:col-span-7 flex flex-col justify-center space-y-6" id="vision-text-wrap">
               <div className="flex items-center gap-2">
-                <span className="h-[1px] w-8 bg-amber-800/20" />
-                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-900/60">
+                <span className="h-[1px] w-8 bg-amber-500/20" />
+                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60">
                   OUR INNER HEART
                 </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-[#121418]">
-                Our <span className="font-serif-instrument italic text-amber-900 font-normal">Vision</span>
+              <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white">
+                Our <span className="font-serif-instrument italic text-amber-500/80 font-normal">Vision</span>
               </h2>
 
-              <p className="text-lg md:text-xl font-light leading-relaxed text-stone-700">
+              <p className="text-lg md:text-xl font-light leading-relaxed text-stone-300">
                 Royal Ministry & Miracle Center is a Christ-centered ministry dedicated to teaching the Word of the Kingdom, raising spiritual growth, experiencing divine alignment, and transforming lives through the power of the Holy Spirit.
               </p>
 
-              <p className="text-sm md:text-base font-light leading-relaxed text-stone-600">
+              <p className="text-sm md:text-base font-light leading-relaxed text-stone-400">
                 We invite you to be part of an active, loving community that actively pursues prophetic encounters, studies the Bible with profound depth, and experiences the move of the Holy Spirit in everyday church life.
               </p>
 
@@ -574,25 +683,25 @@ export default function App() {
                   onClick={() => {
                     selectTab('VISION');
                   }}
-                  className="inline-flex items-center gap-2.5 text-xs font-mono tracking-widest uppercase font-semibold text-amber-950 hover:text-amber-800 border-b border-amber-950/40 pb-1.5 transition-all text-left"
+                  className="inline-flex items-center gap-2.5 text-xs font-mono tracking-widest uppercase font-semibold text-amber-100/60 hover:text-white border-b border-white/20 pb-1.5 transition-all text-left"
                   id="vision-modal-trigger"
                 >
                   Learn more about our foundation 
-                  <ArrowUpRight size={14} className="text-amber-900" />
+                  <ArrowUpRight size={14} className="text-amber-500/60" />
                 </button>
               </div>
 
               {/* Core attributes bento blocks inside the Vision frame */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-stone-200">
-                <div className="p-5 rounded-2xl bg-stone-100 hover:bg-stone-200/50 transition-colors">
-                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Spiritual Depth</h4>
-                  <p className="text-xs text-stone-500 leading-relaxed font-light">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-white/10">
+                <div className="p-5 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                  <h4 className="text-sm font-semibold text-white/90 mb-1">Spiritual Depth</h4>
+                  <p className="text-xs text-stone-400 leading-relaxed font-light">
                     No superficial answers. We value sound theological teaching and authentic scriptural encounters.
                   </p>
                 </div>
-                <div className="p-5 rounded-2xl bg-stone-100 hover:bg-stone-200/50 transition-colors">
-                  <h4 className="text-sm font-semibold text-[#121418] mb-1">Open Heart</h4>
-                  <p className="text-xs text-stone-500 leading-relaxed font-light">
+                <div className="p-5 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                  <h4 className="text-sm font-semibold text-white/90 mb-1">Open Heart</h4>
+                  <p className="text-xs text-stone-400 leading-relaxed font-light">
                     Every individual is welcomed with warmth and grace. A genuine place where authentic fellowship is lived out.
                   </p>
                 </div>
@@ -603,9 +712,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. MEDIEN-SEKTION (Hintergrund: #121418 - Anthrazit) */}
+      {/* 4. MEDIEN-SEKTION */}
       <section 
-        className="relative py-24 md:py-32 bg-[#121418] text-white z-30 overflow-hidden"
+        className="relative py-24 md:py-32 bg-[#121110] text-white z-30 overflow-hidden"
         id="medien-section"
       >
         {/* Subtle geometric lines */}
@@ -641,74 +750,14 @@ export default function App() {
 
           {/* 3-Spalten-Grid representing beautiful sermon cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6" id="sermons-grid">
-            {SERMONS_DATA.map((sermon) => {
-              const isPlaying = activeSermonId === sermon.id;
-              return (
-                <div 
-                  key={sermon.id}
-                  className={`group relative p-8 rounded-[24px] bg-[#1A1D23] border transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between min-h-[300px] ${
-                    isPlaying 
-                      ? 'border-white/90 shadow-[0_0_30px_rgba(255,255,255,0.053)]' 
-                      : 'border-white/5 hover:border-white/20'
-                  }`}
-                  id={`sermon-card-${sermon.id}`}
-                >
-                  {/* Decorative indicator lines */}
-                  <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-white/30 to-transparent" />
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono tracking-wider text-white/40 uppercase bg-white/5 px-2.5 py-1 rounded">
-                        {sermon.category}
-                      </span>
-                      {isPlaying && (
-                        /* Sound active wave Equalizer animation simulated */
-                        <div className="flex gap-0.5 items-end h-3" id="equalizer-waves">
-                          <span className="w-0.5 h-3 bg-white animate-bounce" style={{ animationDelay: '0s' }} />
-                          <span className="w-0.5 h-1.5 bg-white animate-bounce" style={{ animationDelay: '0.1s' }} />
-                          <span className="w-0.5 h-2.5 bg-white animate-bounce" style={{ animationDelay: '0.2s' }} />
-                        </div>
-                      )}
-                    </div>
-
-                    <h3 className="text-xl font-medium tracking-tight text-white/95 group-hover:text-white transition-colors">
-                      {sermon.title}
-                    </h3>
-                    
-                    <p className="text-xs text-white/65 font-light leading-relaxed">
-                      {sermon.description}
-                    </p>
-                  </div>
-
-                  {/* Card Actions Bottom */}
-                  <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-white/40">{sermon.speaker}</span>
-                    
-                    <button
-                      onClick={() => handleTogglePlaySermon(sermon)}
-                      className={`h-9 w-24 rounded-full flex items-center justify-center gap-1 text-[11px] font-mono tracking-widest uppercase transition-all ${
-                        isPlaying 
-                          ? 'bg-white text-black font-semibold' 
-                          : 'bg-white/10 hover:bg-white text-white hover:text-black'
-                      }`}
-                      id={`play-button-${sermon.id}`}
-                    >
-                      {isPlaying ? (
-                        <>
-                          <Pause size={10} fill="currentColor" />
-                          <span>STOP</span>
-                        </>
-                      ) : (
-                        <>
-                          <Play size={10} className="ml-0.5" />
-                          <span>LISTEN</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            {SERMONS_DATA.map((sermon) => (
+              <Sermon3DCard
+                key={sermon.id}
+                sermon={sermon}
+                isPlaying={activeSermonId === sermon.id}
+                handleTogglePlaySermon={handleTogglePlaySermon}
+              />
+            ))}
           </div>
 
           {/* Active play overlay message without artificial server logs */}
@@ -727,9 +776,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. VERANSTALTUNGEN (Gemeinsam unterwegs - Hintergrund: Weiß/Creme) */}
+      {/* 5. VERANSTALTUNGEN */}
       <section 
-        className="relative py-24 md:py-32 bg-[#F9F6F0] text-[#121418] z-30"
+        className="relative py-24 md:py-32 bg-[#131110] text-[#f9f9f9] z-30"
         id="events-section"
       >
         <div className="max-w-5xl mx-auto px-6">
@@ -738,10 +787,10 @@ export default function App() {
             <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-stone-500 block">
               SERVICES & ENCOUNTERS
             </span>
-            <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-[#121418] leading-tight">
-              Walking <span className="font-serif-instrument italic text-amber-900 font-normal">Together</span>
+            <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white leading-tight">
+              Walking <span className="font-serif-instrument italic text-amber-500/80 font-normal">Together</span>
             </h2>
-            <p className="text-stone-600 max-w-xl mx-auto font-light leading-relaxed">
+            <p className="text-stone-400 max-w-xl mx-auto font-light leading-relaxed">
               Join us in our weekly church services or life group chapters. Experience powerful encounters and active church life.
             </p>
           </div>
@@ -755,34 +804,34 @@ export default function App() {
               return (
                 <div 
                   key={evo.id}
-                  className="border-b border-stone-200/80 pb-3"
+                  className="border-b border-white/10 pb-3"
                   id={`event-row-${evo.id}`}
                 >
                   <div 
-                    className="flex flex-col lg:flex-row lg:items-center justify-between py-5 px-4 hover:bg-stone-100/50 transition-all rounded-2xl cursor-pointer gap-4"
+                    className="flex flex-col lg:flex-row lg:items-center justify-between py-5 px-4 hover:bg-white/5 transition-all rounded-2xl cursor-pointer gap-4"
                     onClick={() => {
                       setExpandedEventId(isExpanded ? null : evo.id);
                     }}
                   >
                     {/* Date Badge Column */}
                     <div className="flex flex-row items-center gap-4 sm:gap-6">
-                      <span className="text-xs sm:text-sm font-mono tracking-widest font-semibold uppercase text-amber-950 bg-stone-200/50 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg inline-block text-center min-w-[90px] sm:min-w-[100px]">
+                      <span className="text-xs sm:text-sm font-mono tracking-widest font-semibold uppercase text-amber-500/90 bg-white/5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg inline-block text-center min-w-[90px] sm:min-w-[100px]">
                         {evo.dateBadge}
                       </span>
-                      <h3 className="text-base sm:text-lg font-medium text-[#121418] leading-tight">
+                      <h3 className="text-base sm:text-lg font-medium text-white/95 leading-tight">
                         {evo.title}
                       </h3>
                     </div>
 
                     {/* Short Description Column */}
-                    <p className="text-xs sm:text-sm text-stone-500 font-light lg:ml-4 flex-1 lg:max-w-md xl:max-w-xl self-start lg:self-center leading-relaxed">
+                    <p className="text-xs sm:text-sm text-stone-400/80 font-light lg:ml-4 flex-1 lg:max-w-md xl:max-w-xl self-start lg:self-center leading-relaxed">
                       {evo.subtitle}
                     </p>
 
                     {/* Right Ghost Actions Column */}
                     <div className="flex items-center gap-3 self-end lg:self-center">
                       {hasRsvp && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-mono text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-md">
+                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-mono text-emerald-400 font-bold bg-emerald-900/30 px-2.5 py-1 rounded-md">
                           <CheckCircle size={10} /> ATTENDING
                         </span>
                       )}
@@ -792,7 +841,7 @@ export default function App() {
                           e.stopPropagation();
                           setExpandedEventId(isExpanded ? null : evo.id);
                         }}
-                        className="px-4 py-2 rounded-full border border-stone-300 hover:border-stone-900 text-xs text-[#121418] font-medium bg-white hover:bg-stone-50 transition-colors"
+                        className="px-4 py-2 rounded-full border border-white/10 hover:border-white/30 text-xs text-white/90 font-medium bg-white/5 hover:bg-white/10 transition-colors"
                         id={`event-toggle-${evo.id}`}
                       >
                         {isExpanded ? 'Collapse' : 'Details'}
@@ -802,34 +851,34 @@ export default function App() {
 
                   {/* Expanded description accordion drawer */}
                   {isExpanded && (
-                    <div className="py-6 px-6 bg-stone-100/50 rounded-2xl mx-3 mb-4 space-y-4 animate-[fadeIn_0.25s_ease-out]">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-stone-600">
+                    <div className="py-6 px-6 bg-[#1a1715] rounded-2xl mx-3 mb-4 space-y-4 animate-[fadeIn_0.25s_ease-out]">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-stone-400">
                         <div className="flex items-center gap-2">
-                          <Clock size={14} className="text-stone-400" />
+                          <Clock size={14} className="text-stone-500" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Time:</span>
+                            <span className="block font-semibold text-white/90">Time:</span>
                             <span>{evo.time}</span>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <MapPin size={14} className="text-stone-400" />
+                          <MapPin size={14} className="text-stone-500" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Location:</span>
+                            <span className="block font-semibold text-white/90">Location:</span>
                             <span>{evo.location}</span>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <Calendar size={14} className="text-stone-400" />
+                          <Calendar size={14} className="text-stone-500" />
                           <div>
-                            <span className="block font-semibold text-[#121418]">Availability:</span>
+                            <span className="block font-semibold text-white/90">Availability:</span>
                             <span>{evo.slotsRemaining} seats available</span>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-sm font-light text-stone-700 leading-relaxed border-t border-stone-200/50 pt-4">
+                      <p className="text-sm font-light text-stone-300 leading-relaxed border-t border-white/10 pt-4">
                         {evo.subtitle} Feel free to visit us. For questions or accessibility options, reach out to our team coordinators anytime through our contact modal.
                       </p>
 
@@ -838,8 +887,8 @@ export default function App() {
                           onClick={() => handleToggleRsvp(evo.id)}
                           className={`px-5 py-2.5 rounded-full text-xs font-mono tracking-widest uppercase transition-all ${
                             hasRsvp 
-                              ? 'bg-amber-900 text-white' 
-                              : 'bg-stone-900 hover:bg-stone-800 text-white'
+                              ? 'bg-amber-900 text-white hover:bg-amber-800' 
+                              : 'bg-white text-black hover:bg-white/90 border border-white'
                           }`}
                           id={`rsvp-action-${evo.id}`}
                         >
@@ -847,7 +896,7 @@ export default function App() {
                         </button>
                         <button 
                           onClick={() => selectTab('EVENTS')}
-                          className="px-4 py-2.5 text-xs font-mono tracking-wider uppercase text-[#121418]/60 hover:text-[#121418] transition-colors"
+                          className="px-4 py-2.5 text-xs font-mono tracking-wider uppercase text-white/60 hover:text-white transition-colors"
                         >
                           Learn More
                         </button>
@@ -862,9 +911,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. NEWSLETTER / COMMUNITY (Hintergrund: #121418) */}
+      {/* 6. NEWSLETTER / COMMUNITY */}
       <section 
-        className="relative py-24 md:py-32 bg-[#121418] text-white z-30"
+        className="relative py-24 md:py-32 bg-[#121110] text-white z-30"
         id="community-section"
       >
         <div className="max-w-4xl mx-auto px-6">
