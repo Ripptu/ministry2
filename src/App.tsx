@@ -150,7 +150,13 @@ const EVENTS_DATA: CommunityEvent[] = [
   }
 ];
 
-const Sermon3DCard = ({ sermon, isPlaying, handleTogglePlaySermon }: { sermon: SermonCard; isPlaying: boolean; handleTogglePlaySermon: (s: SermonCard) => void }) => {
+interface Sermon3DCardProps {
+  sermon: SermonCard;
+  isPlaying: boolean;
+  handleTogglePlaySermon: (s: SermonCard) => void;
+}
+
+const Sermon3DCard: React.FC<Sermon3DCardProps> = ({ sermon, isPlaying, handleTogglePlaySermon }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -247,6 +253,17 @@ const Sermon3DCard = ({ sermon, isPlaying, handleTogglePlaySermon }: { sermon: S
     </motion.div>
   );
 };
+
+const MAIN_MENU = [
+  { label: 'HOME', id: 'hero-section' },
+  { label: 'ABOUT', id: 'about-section' },
+  { label: 'TEACHINGS', id: 'teachings-section' },
+  { label: 'MEDIA', id: 'media-section' },
+  { label: 'EVENTS', id: 'events-section' },
+  { label: 'PRAYER', id: 'prayer-section' },
+  { label: 'LEADERSHIP', id: 'leadership-section' },
+  { label: 'CONTACT', id: 'contact-section' }
+];
 
 export default function App() {
   const [mounted, setMounted] = useState(false);
@@ -405,41 +422,16 @@ export default function App() {
           className="hidden md:flex liquid-glass rounded-full px-3 py-2 items-center gap-1 bg-black/60 backdrop-blur-xl shadow-2xl"
           id="nav-links"
         >
-          <button
-            onClick={() => handleScrollToSection('hero-section')}
-            className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
-            id="nav-link-hero"
-          >
-            START
-          </button>
-          <button
-            onClick={() => handleScrollToSection('vision-section')}
-            className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
-            id="nav-link-vision"
-          >
-            VISION
-          </button>
-          <button
-            onClick={() => handleScrollToSection('medien-section')}
-            className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
-            id="nav-link-sermons"
-          >
-            SERMONS
-          </button>
-          <button
-            onClick={() => handleScrollToSection('events-section')}
-            className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
-            id="nav-link-events"
-          >
-            EVENTS
-          </button>
-          <button
-            onClick={() => handleScrollToSection('community-section')}
-            className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
-            id="nav-link-newsletter"
-          >
-            COMMUNITY
-          </button>
+          {MAIN_MENU.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleScrollToSection(item.id)}
+              className="text-[11px] font-medium tracking-[0.12em] text-white/90 cursor-pointer hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
+              id={`nav-link-${item.id}`}
+            >
+              {item.label}
+            </button>
+          ))}
         </nav>
 
         {/* Right Action buttons */}
@@ -471,51 +463,18 @@ export default function App() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#121110]/98 backdrop-blur-xl flex flex-col justify-between pt-28 px-6 pb-12 animate-[fadeIn_0.2s_ease-out] md:hidden">
           <nav className="flex flex-col gap-5 text-center">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleScrollToSection('hero-section');
-              }}
-              className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
-            >
-              START
-            </button>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleScrollToSection('vision-section');
-              }}
-              className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
-            >
-              VISION
-            </button>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleScrollToSection('medien-section');
-              }}
-              className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
-            >
-              SERMONS
-            </button>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleScrollToSection('events-section');
-              }}
-              className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
-            >
-              EVENTS
-            </button>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleScrollToSection('community-section');
-              }}
-              className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
-            >
-              COMMUNITY
-            </button>
+            {MAIN_MENU.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleScrollToSection(item.id);
+                }}
+                className="text-lg font-light tracking-widest text-white/90 hover:text-white py-1.5 border-b border-white/5"
+              >
+                {item.label}
+              </button>
+            ))}
             
             <button 
               onClick={() => {
@@ -576,35 +535,37 @@ export default function App() {
           </div>
 
           <h1 
-            className="font-sans font-extralight text-center tracking-[-0.02em] leading-[1.05] flex flex-col gap-2 items-center"
-            style={{ fontSize: "clamp(46px, 6vw, 84px)" }}
+            className="font-sans text-center tracking-[-0.02em] leading-[1.1] flex flex-col gap-1 md:gap-3 items-center w-full"
           >
-            <span className="text-white font-normal font-serif-instrument italic tracking-normal">
-              Welcome to the
+            <span className="text-white font-normal tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[72px]">
+              Raising Lives Through
             </span>
-            <span className="text-white/90 font-light font-sans tracking-tight">
-              Realm of Miracles.
+            <span className="text-white/90 font-light tracking-tight flex flex-col sm:flex-row flex-wrap justify-center items-center gap-x-4 text-3xl sm:text-5xl md:text-6xl lg:text-[72px] mt-2">
+              Kingdom Truth <span className="font-serif-instrument italic text-amber-500/80 font-normal text-4xl sm:text-6xl md:text-7xl lg:text-[84px] -mt-1 sm:mt-0 lg:ml-2">&amp;</span>
+            </span>
+            <span className="text-amber-500/90 font-serif-instrument italic font-normal tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-[84px] mt-2 md:mt-4 text-balance">
+              Supernatural Transformation
             </span>
           </h1>
 
-          <p className="mt-8 text-base md:text-lg text-white/70 font-light max-w-2xl mx-auto leading-relaxed">
-            Experience the tangible presence of God, where faith is ignited and destinies are transformed. A place for inspiration, growth, and authentic community.
+          <p className="mt-8 text-base md:text-lg text-white/70 font-light max-w-2xl mx-auto leading-relaxed text-center">
+            Royal Ministry is a modern Christ-centered ministry dedicated to Kingdom truth, spiritual growth, supernatural transformation and the power of the Holy Spirit.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <button 
-              onClick={() => handleScrollToSection('vision-section')}
+              onClick={() => handleScrollToSection('teachings-section')}
               className="border border-white/20 hover:border-white/50 text-white text-[14px] font-medium rounded-full px-8 py-4 cursor-pointer hover:scale-[1.03] active:scale-[0.97] bg-white/5 backdrop-blur-sm transition-all duration-300"
-              id="explore-vision-btn"
+              id="explore-teachings-btn"
             >
-              Our Vision
+              Explore Teachings
             </button>
             <button 
-              onClick={() => handleScrollToSection('medien-section')}
+              onClick={() => handleScrollToSection('media-section')}
               className="bg-white text-black text-[14px] font-semibold rounded-full px-8 py-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_0_35px_5px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-300"
-              id="escape-cta-btn"
+              id="watch-messages-btn"
             >
-              Watch Sermons
+              Watch Messages
             </button>
           </div>
         </div>
@@ -619,16 +580,28 @@ export default function App() {
 
         {/* Scroll indicator chevron prompt */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer animate-bounce"
-             onClick={() => handleScrollToSection('vision-section')}>
+             onClick={() => handleScrollToSection('about-section')}>
           <span className="text-[9px] font-mono tracking-widest text-white/45">SCROLL</span>
           <ChevronDown className="text-white/60" size={16} />
         </div>
       </section>
 
-      {/* 3. VISION-SEKTION */}
+      {/* SHORT INTRO */}
+      <section className="relative py-16 md:py-24 bg-[#121110] text-[#f9f9f9] z-30 border-t border-white/5 text-center px-6">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <p className="text-xl md:text-2xl font-light leading-relaxed text-white">
+            Royal Ministry exists to equip believers through sound Kingdom teaching, spiritual growth, revelation, discipleship and the transforming power of the Holy Spirit.
+          </p>
+          <p className="text-base md:text-lg font-light leading-relaxed text-stone-400">
+            Our mission is to help people discover divine purpose, grow spiritually and walk in the reality of supernatural Christianity through Jesus Christ.
+          </p>
+        </div>
+      </section>
+
+      {/* 3. ABOUT-SEKTION */}
       <section 
         className="relative py-24 md:py-32 bg-[#1a1715] text-[#f9f9f9] z-30 overflow-hidden"
-        id="vision-section"
+        id="about-section"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -667,15 +640,15 @@ export default function App() {
               </div>
 
               <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white">
-                Our <span className="font-serif-instrument italic text-amber-500/80 font-normal">Vision</span>
+                About <span className="font-serif-instrument italic text-amber-500/80 font-normal">Royal Ministry</span>
               </h2>
 
               <p className="text-lg md:text-xl font-light leading-relaxed text-stone-300">
-                Royal Ministry & Miracle Center is a Christ-centered ministry dedicated to teaching the Word of the Kingdom, raising spiritual growth, experiencing divine alignment, and transforming lives through the power of the Holy Spirit.
+                Royal Ministry is a Christ-centered ministry dedicated to advancing Kingdom truth, spiritual growth and supernatural transformation through the power of the Holy Spirit.
               </p>
 
               <p className="text-sm md:text-base font-light leading-relaxed text-stone-400">
-                We invite you to be part of an active, loving community that actively pursues prophetic encounters, studies the Bible with profound depth, and experiences the move of the Holy Spirit in everyday church life.
+                We believe that every believer is called to discover divine purpose, grow in spiritual maturity and live according to the principles of God’s Kingdom. Our mission is to equip individuals through biblical teaching, discipleship, prayer and spiritual development, helping them become effective representatives of Christ in every area of life.
               </p>
 
               <div className="pt-4 flex items-center">
@@ -694,15 +667,15 @@ export default function App() {
               {/* Core attributes bento blocks inside the Vision frame */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-white/10">
                 <div className="p-5 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                  <h4 className="text-sm font-semibold text-white/90 mb-1">Spiritual Depth</h4>
+                  <h4 className="text-sm font-semibold text-white/90 mb-1">Sound Doctrine</h4>
                   <p className="text-xs text-stone-400 leading-relaxed font-light">
-                    No superficial answers. We value sound theological teaching and authentic scriptural encounters.
+                    Royal Ministry exists to inspire, empower and transform lives through sound doctrine.
                   </p>
                 </div>
                 <div className="p-5 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                  <h4 className="text-sm font-semibold text-white/90 mb-1">Open Heart</h4>
+                  <h4 className="text-sm font-semibold text-white/90 mb-1">A Deeper Relationship</h4>
                   <p className="text-xs text-stone-400 leading-relaxed font-light">
-                    Every individual is welcomed with warmth and grace. A genuine place where authentic fellowship is lived out.
+                    Focused on spiritual revelation and cultivating a deeper relationship with Jesus Christ.
                   </p>
                 </div>
               </div>
@@ -712,10 +685,42 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. MEDIEN-SEKTION */}
+      {/* 4. TEACHINGS-SEKTION */}
+      <section 
+        className="relative py-24 md:py-32 bg-[#1a1715] text-[#f9f9f9] z-30 border-t border-white/5"
+        id="teachings-section"
+      >
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block mb-4">
+            KINGDOM TRUTH
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white mb-8">
+            Deep <span className="font-serif-instrument italic text-amber-500/80 font-normal">Teachings</span>
+          </h2>
+          <p className="text-lg font-light leading-relaxed text-stone-400 max-w-2xl mx-auto mb-12">
+            Dive into the uncompromised Word of God. Our teachings are designed for spiritual growth, supernatural Christianity, and a solid Kingdom foundation.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <div className="p-8 rounded-[24px] bg-white/5 border border-white/10 hover:border-white/20 transition-all text-left group cursor-pointer">
+                <span className="text-[10px] font-mono uppercase text-white/40 mb-3 block">KINGDOM SERIES</span>
+                <h3 className="text-xl font-medium text-white/95 mb-3 group-hover:text-amber-400 transition-colors">The Supernatural Realm</h3>
+                <p className="text-sm text-stone-400 font-light mb-6">Discover how to walk in the miraculous power of the Holy Spirit every day.</p>
+                <div className="text-xs font-mono tracking-widest text-white/60 group-hover:text-white transition-colors flex items-center gap-2 uppercase">Read more <ArrowRight size={12} /></div>
+             </div>
+             <div className="p-8 rounded-[24px] bg-white/5 border border-white/10 hover:border-white/20 transition-all text-left group cursor-pointer">
+                <span className="text-[10px] font-mono uppercase text-white/40 mb-3 block">DISCIPLESHIP</span>
+                <h3 className="text-xl font-medium text-white/95 mb-3 group-hover:text-amber-400 transition-colors">Apostolic Foundations</h3>
+                <p className="text-sm text-stone-400 font-light mb-6">Laying the groundwork for a life centered fully on Christ and the unshakable truth.</p>
+                <div className="text-xs font-mono tracking-widest text-white/60 group-hover:text-white transition-colors flex items-center gap-2 uppercase">Read more <ArrowRight size={12} /></div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. MEDIA-SEKTION */}
       <section 
         className="relative py-24 md:py-32 bg-[#121110] text-white z-30 overflow-hidden"
-        id="medien-section"
+        id="media-section"
       >
         {/* Subtle geometric lines */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.01),transparent_50%)]" />
@@ -911,10 +916,68 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. NEWSLETTER / COMMUNITY */}
+      {/* 7. PRAYER-SEKTION */}
       <section 
-        className="relative py-24 md:py-32 bg-[#121110] text-white z-30"
-        id="community-section"
+        className="relative py-24 md:py-32 bg-[#1a1715] text-[#f9f9f9] z-30 border-t border-white/5"
+        id="prayer-section"
+      >
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block mb-4">
+            SUPERNATURAL INTERVENTION
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white mb-6">
+            We Stand With You in <span className="font-serif-instrument italic text-amber-500/80 font-normal">Prayer</span>
+          </h2>
+          <p className="text-lg font-light leading-relaxed text-stone-400 max-w-2xl mx-auto mb-10">
+            Prayer changes things. Submit your prayer requests securely and our intercession team will stand with you for divine breakthrough.
+          </p>
+          <button 
+            onClick={() => selectTab('COMMUNITY')}
+            className="bg-white text-black text-[14px] font-semibold rounded-full px-8 py-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_0_35px_5px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-300 inline-flex items-center gap-2"
+          >
+            Submit Prayer Request <ArrowRight size={16} />
+          </button>
+        </div>
+      </section>
+
+      {/* 8. LEADERSHIP-SEKTION */}
+      <section 
+        className="relative py-24 md:py-32 bg-[#121110] text-white z-30 border-t border-white/5"
+        id="leadership-section"
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1 relative aspect-square overflow-hidden rounded-[24px] border border-white/10 shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1000&auto=format&fit=crop" 
+                alt="Leadership Team"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
+            </div>
+            <div className="order-1 md:order-2 space-y-6">
+              <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block">
+                APOSTOLIC OVERSIGHT
+              </span>
+              <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white">
+                Our <span className="font-serif-instrument italic text-amber-500/80 font-normal">Leadership</span>
+              </h2>
+              <p className="text-lg font-light leading-relaxed text-stone-400">
+                Led by visionaries carrying a strong apostolic and prophetic grace, Royal Ministry is committed to equipping the saints for the work of the ministry.
+              </p>
+              <p className="text-base font-light leading-relaxed text-stone-500">
+                Their mandate is to raise a generation of believers who understand their Kingdom identity and walk in the fullness of God's power.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. CONTACT-SEKTION */}
+      <section 
+        className="relative py-24 md:py-32 bg-[#1a1715] text-white z-30 border-t border-white/5"
+        id="contact-section"
       >
         <div className="max-w-4xl mx-auto px-6">
           <div className="liquid-glass border border-white/10 rounded-[32px] p-8 md:p-16 relative overflow-hidden" id="newsletter-form-box">
@@ -1026,42 +1089,17 @@ export default function App() {
                 Navigation
               </span>
               <ul className="space-y-2">
-                <li>
-                  <button 
-                    onClick={() => handleScrollToSection('hero-section')}
-                    className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
-                    id="footer-nav-hero"
-                  >
-                    Home
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => handleScrollToSection('vision-section')}
-                    className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
-                    id="footer-nav-vision"
-                  >
-                    Our Vision & Foundation
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => handleScrollToSection('medien-section')}
-                    className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
-                    id="footer-nav-medien"
-                  >
-                    Sermons & Teachings
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => handleScrollToSection('events-section')}
-                    className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
-                    id="footer-nav-events"
-                  >
-                    Events & Encounters
-                  </button>
-                </li>
+                {MAIN_MENU.map((item) => (
+                  <li key={`footer-${item.id}`}>
+                    <button 
+                      onClick={() => handleScrollToSection(item.id)}
+                      className="hover:text-white transition-colors text-stone-500 cursor-pointer text-left"
+                      id={`footer-nav-${item.id}`}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
 
