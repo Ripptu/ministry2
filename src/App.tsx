@@ -182,75 +182,77 @@ const Sermon3DCard: React.FC<Sermon3DCardProps> = ({ sermon, isPlaying, handleTo
   };
 
   return (
-    <motion.div
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`group relative p-8 rounded-[24px] bg-[#1a1715] border transition-all duration-300 min-h-[300px] flex flex-col justify-between ${
-        isPlaying 
-          ? 'border-white/50 shadow-[0_0_40px_rgba(255,255,255,0.08)]' 
-          : 'border-white/5 hover:border-white/20'
-      }`}
-      id={`sermon-card-${sermon.id}`}
-    >
-      <div 
-        className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-white/30 to-transparent" 
-        style={{ transform: "translateZ(20px)" }} 
-      />
-      
-      <div className="space-y-4" style={{ transform: "translateZ(30px)" }}>
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] font-mono tracking-wider text-white/40 uppercase bg-white/5 px-2.5 py-1 rounded">
-            {sermon.category}
-          </span>
-          {isPlaying && (
-            <div className="flex gap-0.5 items-end h-3">
-              <span className="w-0.5 h-3 bg-white animate-bounce" style={{ animationDelay: '0s' }} />
-              <span className="w-0.5 h-1.5 bg-white animate-bounce" style={{ animationDelay: '0.1s' }} />
-              <span className="w-0.5 h-2.5 bg-white animate-bounce" style={{ animationDelay: '0.2s' }} />
-            </div>
-          )}
+    <div style={{ perspective: 1000 }}>
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`group relative p-8 rounded-[24px] bg-[#1a1715] border transition-all duration-300 min-h-[300px] flex flex-col justify-between ${
+          isPlaying 
+            ? 'border-white/50 shadow-[0_0_40px_rgba(255,255,255,0.08)]' 
+            : 'border-white/5 hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.5)] shadow-none'
+        }`}
+        id={`sermon-card-${sermon.id}`}
+      >
+        <div 
+          className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-white/30 to-transparent" 
+          style={{ transform: "translateZ(30px)" }} 
+        />
+        
+        <div className="space-y-4" style={{ transform: "translateZ(40px)" }}>
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono tracking-wider text-white/40 uppercase bg-white/5 px-2.5 py-1 rounded">
+              {sermon.category}
+            </span>
+            {isPlaying && (
+              <div className="flex gap-0.5 items-end h-3">
+                <span className="w-0.5 h-3 bg-white animate-bounce" style={{ animationDelay: '0s' }} />
+                <span className="w-0.5 h-1.5 bg-white animate-bounce" style={{ animationDelay: '0.1s' }} />
+                <span className="w-0.5 h-2.5 bg-white animate-bounce" style={{ animationDelay: '0.2s' }} />
+              </div>
+            )}
+          </div>
+
+          <h3 className="text-xl font-medium tracking-tight text-white/95 group-hover:text-white transition-colors">
+            {sermon.title}
+          </h3>
+          
+          <p className="text-xs text-white/65 font-light leading-relaxed">
+            {sermon.description}
+          </p>
         </div>
 
-        <h3 className="text-xl font-medium tracking-tight text-white/95 group-hover:text-white transition-colors">
-          {sermon.title}
-        </h3>
-        
-        <p className="text-xs text-white/65 font-light leading-relaxed">
-          {sermon.description}
-        </p>
-      </div>
-
-      <div className="pt-6 border-t border-white/5 flex items-center justify-between" style={{ transform: "translateZ(40px)" }}>
-        <span className="text-[11px] font-mono text-white/40">{sermon.speaker}</span>
-        
-        <button
-          onClick={() => handleTogglePlaySermon(sermon)}
-          className={`h-9 w-24 rounded-full flex items-center justify-center gap-1 text-[11px] font-mono tracking-widest uppercase transition-all ${
-            isPlaying 
-              ? 'bg-amber-900 text-white font-semibold shadow-lg' 
-              : 'bg-white/10 hover:bg-white text-white hover:text-black'
-          }`}
-          id={`play-button-${sermon.id}`}
-        >
-          {isPlaying ? (
-            <>
-              <Pause size={10} fill="currentColor" />
-              <span>STOP</span>
-            </>
-          ) : (
-            <>
-              <Play size={10} className="ml-0.5" />
-              <span>LISTEN</span>
-            </>
-          )}
-        </button>
-      </div>
-    </motion.div>
+        <div className="pt-6 border-t border-white/5 flex items-center justify-between" style={{ transform: "translateZ(30px)" }}>
+          <span className="text-[11px] font-mono text-white/40">{sermon.speaker}</span>
+          
+          <button
+            onClick={() => handleTogglePlaySermon(sermon)}
+            className={`h-9 w-24 rounded-full flex items-center justify-center gap-1 text-[11px] font-mono tracking-widest uppercase transition-all ${
+              isPlaying 
+                ? 'bg-amber-900 text-white font-semibold shadow-lg' 
+                : 'bg-white/10 hover:bg-white text-white hover:text-black'
+            }`}
+            id={`play-button-${sermon.id}`}
+          >
+            {isPlaying ? (
+              <>
+                <Pause size={10} fill="currentColor" />
+                <span>STOP</span>
+              </>
+            ) : (
+              <>
+                <Play size={10} className="ml-0.5" />
+                <span>LISTEN</span>
+              </>
+            )}
+          </button>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -1111,26 +1113,26 @@ export default function App() {
               <ul className="space-y-2">
                 <li>
                   <button 
-                    onClick={() => selectTab('COMMUNITY')}
+                    onClick={() => selectTab('IMPRINT')}
                     className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
                   >
-                    Imprint
+                    Imprint / Impressum
                   </button>
                 </li>
                 <li>
                   <button 
-                    onClick={() => selectTab('COMMUNITY')}
+                    onClick={() => selectTab('AGB')}
                     className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
                   >
-                    Privacy Policy
+                    Terms &amp; Conditions / AGB
                   </button>
                 </li>
                 <li>
                   <button 
-                    onClick={() => selectTab('COMMUNITY')}
+                    onClick={() => selectTab('PRIVACY')}
                     className="hover:text-white transition-colors text-stone-500 text-left block cursor-pointer"
                   >
-                    Cookie Settings
+                    Privacy Policy / Datenschutz
                   </button>
                 </li>
                 <li>

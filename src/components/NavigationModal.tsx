@@ -174,12 +174,17 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md overflow-y-auto cursor-pointer"
       id="nav-modal-backdrop"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          handleClose();
+        }
+      }}
     >
       <div 
         ref={bodyRef}
-        className="relative w-full max-w-4xl text-white liquid-glass rounded-3xl p-6 sm:p-10 md:p-12 overflow-hidden my-8"
+        className="relative w-full max-w-4xl text-white liquid-glass rounded-3xl p-6 sm:p-10 md:p-12 overflow-hidden my-8 cursor-default"
         id="nav-modal-body"
       >
         {/* Absolute Subtle Ornaments */}
@@ -198,6 +203,9 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
               {activeTab === 'MEDIEN' && 'MEDIA & SERMONS'}
               {activeTab === 'EVENTS' && 'WEEKLY ENCOUNTERS & PROGRAMS'}
               {activeTab === 'COMMUNITY' && 'CONTACT & COMMUNITY'}
+              {activeTab === 'IMPRINT' && 'IMPRINT / IMPRESSUM'}
+              {activeTab === 'AGB' && 'TERMS & CONDITIONS / AGB'}
+              {activeTab === 'PRIVACY' && 'PRIVACY POLICY / DATENSCHUTZ'}
             </span>
           </div>
 
@@ -542,6 +550,117 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                       </button>
                     </form>
                   )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 5: IMPRINT / IMPRESSUM */}
+          {activeTab === 'IMPRINT' && (
+            <div className="space-y-6 max-h-[420px] overflow-y-auto pr-2">
+              <div className="max-w-xl">
+                <h3 className="text-2xl font-light font-sans tracking-tight mb-2">Imprint / Impressum</h3>
+                <p className="text-xs text-white/50">Legal information according to § 5 TMG for Royal Ministry.</p>
+              </div>
+              <div className="space-y-4 text-xs font-light text-white/70 leading-relaxed border-t border-white/10 pt-4">
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">Information according to § 5 TMG / Angaben gemäß § 5 TMG</h4>
+                  <p className="text-white font-medium text-sm">Royal Ministry e.V. (i.Gr.)</p>
+                  <p>Rheinlandstraße 14</p>
+                  <p>60529 Frankfurt am Main</p>
+                  <p>Germany / Deutschland</p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">Represented by / Vertreten durch</h4>
+                  <p className="text-white font-medium">Pastor Isaac Mahugnon</p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">Contact / Kontakt</h4>
+                  <p>Email: <span className="text-white">Isaacmahugnon23@web.de</span></p>
+                  <p>Phone / WhatsApp: <span className="text-white">+49 152 152 377 11</span></p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">Disclaimer / Haftungsausschluss</h4>
+                  <p className="mb-2">
+                    <strong>Haftung für Inhalte:</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                  </p>
+                  <p>
+                    <strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 6: TERMS & CONDITIONS / AGB */}
+          {activeTab === 'AGB' && (
+            <div className="space-y-6 max-h-[420px] overflow-y-auto pr-2">
+              <div className="max-w-xl">
+                <h3 className="text-2xl font-light font-sans tracking-tight mb-2">Terms & Conditions / Allgemeine Geschäftsbedingungen</h3>
+                <p className="text-xs text-white/50">Last updated: May 2026</p>
+              </div>
+              <div className="space-y-4 text-xs font-light text-white/70 leading-relaxed border-t border-white/10 pt-4">
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">1. Scope of Application / Geltungsbereich</h4>
+                  <p>
+                    These General Terms and Conditions govern the use of the Royal Ministry website, including bookings for weekly encounters, the creation of spiritual roadmaps, and subscribing to the spiritual newsletter.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">2. Spiritual Mentorship Disclaimer / Geistiger Haftungsausschluss</h4>
+                  <p className="text-white/90">
+                    <strong>IMPORTANT:</strong> All customized roadmaps, prayer counseling, and insights offered by Royal Ministry are strictly designed to support Christian spiritual growth, discipleship, and faith development. They do not constitute legal, financial, professional, medical, or psychotherapeutic advice or diagnostic assessments. If you require medical or psychiatric care, please contact professional healthcare providers immediately.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">3. Participation and Bookings / Teilnahme an Veranstaltungen</h4>
+                  <p>
+                    Registrations for programs or specific events (e.g. "Join Encounter") are conducted on a voluntary community basis. We reserve the right to modify service schedules, venue logistics, or speaker line-ups if requested by divine leadership or operational constraints.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">4. Code of Conduct / Gemeinschaftsregeln</h4>
+                  <p>
+                    Royal Ministry is a space of respect, honor, love, and Kingdom truth. Any hate speech, disruptive activities, or harassment during services or online intercession channels will lead to immediate exclusion from ministry events.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 7: PRIVACY POLICY / DATENSCHUTZ */}
+          {activeTab === 'PRIVACY' && (
+            <div className="space-y-6 max-h-[420px] overflow-y-auto pr-2">
+              <div className="max-w-xl">
+                <h3 className="text-2xl font-light font-sans tracking-tight mb-2">Privacy Policy / Datenschutzerklärung</h3>
+                <p className="text-xs text-white/50">Compliance with European GDPR / DSGVO regulations.</p>
+              </div>
+              <div className="space-y-4 text-xs font-light text-white/70 leading-relaxed border-t border-white/10 pt-4">
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">1. General Overview / Allgemeine Hinweise</h4>
+                  <p>
+                    Your privacy is of utmost importance to us. This privacy policy informs you about how we handle, process, and protect your personal data when you use our website, contact forms, weekly RSVPs, or register for our spiritual newsletters.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">2. Controller / Verantwortliche Stelle</h4>
+                  <p className="font-medium text-white">Royal Ministry e.V. (i.Gr.)</p>
+                  <p>Rheinlandstraße 14, 60529 Frankfurt am Main, Germany</p>
+                  <p>Email: Isaacmahugnon23@web.de</p>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">3. Processed Data / Erhobene Daten</h4>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li><strong>Contact Forms:</strong> Name, Email, Topic, Message (Art. 6 Abs. 1 lit. b GDPR).</li>
+                    <li><strong>Newsletter:</strong> Email address, timestamp (Art. 6 Abs. 1 lit. a GDPR).</li>
+                    <li><strong>Spiritual Roadmap Portal:</strong> Name, Email, chosen spiritual pillars, and duration.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] tracking-wider text-amber-500 uppercase mb-1">4. Your Rights under GDPR / Ihre Rechte nach DSGVO</h4>
+                  <p>
+                    You have the right is to access your stored data, demand correction, request erasure, or revoke data processing consent at any time. Simply send an email to <span className="text-white font-medium">Isaacmahugnon23@web.de</span>.
+                  </p>
                 </div>
               </div>
             </div>

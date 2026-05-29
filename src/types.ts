@@ -17,4 +17,4 @@ export interface SpiritualPlan {
   completed: boolean;
 }
 
-export type ActiveTab = 'VISION' | 'MEDIEN' | 'EVENTS' | 'COMMUNITY' | null;
+export type ActiveTab = 'VISION' | 'MEDIEN' | 'EVENTS' | 'COMMUNITY' | 'IMPRINT' | 'AGB' | 'PRIVACY' | null;

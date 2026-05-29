@@ -109,12 +109,17 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
   return (
     <div 
       ref={modalRef} 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md overflow-y-auto cursor-pointer"
       id="modal-backdrop"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          handleClose();
+        }
+      }}
     >
       <div 
         ref={contentRef}
-        className="relative w-full max-w-2xl text-white liquid-glass rounded-3xl p-8 sm:p-10 md:p-12 overflow-hidden"
+        className="relative w-full max-w-2xl text-white liquid-glass rounded-3xl p-8 sm:p-10 md:p-12 overflow-hidden cursor-default"
         id="modal-content"
       >
         {/* Progress bar */}
