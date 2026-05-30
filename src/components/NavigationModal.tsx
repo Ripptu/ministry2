@@ -191,8 +191,18 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.01] blur-3xl rounded-full" />
         <div className="absolute -bottom-8 -left-8 w-80 h-80 bg-white/[0.01] blur-3xl rounded-full" />
 
+        {/* Floating Close Button */}
+        <button 
+          onClick={handleClose}
+          className="absolute top-6 right-6 p-2.5 rounded-full cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-colors z-50 bg-black/40 backdrop-blur-md border border-white/10 pointer-events-auto"
+          id="close-nav-modal"
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
+
         {/* Top bar info */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
+        <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8 pr-12">
           <div className="flex items-center gap-3">
             <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-mono">
               ROYAL MINISTRY PORTAL
@@ -208,14 +218,6 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
               {activeTab === 'PRIVACY' && 'PRIVACY POLICY / DATENSCHUTZ'}
             </span>
           </div>
-
-          <button 
-            onClick={handleClose}
-            className="p-2 cursor-pointer bg-white/5 hover:bg-white/15 rounded-full transition-all text-white/80 hover:text-white"
-            id="close-nav-modal"
-          >
-            <X size={16} />
-          </button>
         </div>
 
         {/* Tab Selection Content */}

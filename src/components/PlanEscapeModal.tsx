@@ -135,7 +135,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
         {/* Close Button */}
         <button 
           onClick={handleClose}
-          className="absolute top-6 right-6 p-2 rounded-full cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+          className="absolute top-6 right-6 p-2.5 rounded-full cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-all z-50 bg-black/40 backdrop-blur-md border border-white/10 pointer-events-auto"
           id="close-modal-btn"
           aria-label="Close"
         >

@@ -414,9 +414,6 @@ export default function App() {
           <span className="text-[19px] tracking-tight font-sans font-semibold text-white group-hover:text-white/80 transition-colors">
             Royal Ministry
           </span>
-          <sup className="text-[9px] font-mono font-medium text-white/40 tracking-widest uppercase">
-            TM
-          </sup>
         </div>
 
         {/* Center Liquid-glass Navigation bar (Desktop) styled like a Dynamic Island */}
@@ -446,7 +443,7 @@ export default function App() {
             className="bg-white hover:bg-white/95 text-black rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-[10px] sm:text-[11px] font-medium tracking-[0.12em] uppercase cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all"
             id="get-roaming-btn"
           >
-            REGISTER
+            GET CONNECTED
           </button>
 
           {/* Hamburger Mobile Menu Toggle Button */}
@@ -485,7 +482,7 @@ export default function App() {
               }}
               className="bg-white hover:bg-white/95 text-black rounded-full py-3.5 text-xs font-semibold tracking-widest uppercase mt-4 w-full transition-all"
             >
-              REGISTER
+              GET CONNECTED
             </button>
           </nav>
           
@@ -697,11 +694,16 @@ export default function App() {
             KINGDOM TRUTH
           </span>
           <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white mb-8">
-            Deep <span className="font-serif-instrument italic text-amber-500/80 font-normal">Teachings</span>
+            At Royal Ministry, <span className="font-serif-instrument italic text-amber-500/80 font-normal">Teaching</span> is at the heart of our mission
           </h2>
-          <p className="text-lg font-light leading-relaxed text-stone-400 max-w-2xl mx-auto mb-12">
-            Dive into the uncompromised Word of God. Our teachings are designed for spiritual growth, supernatural Christianity, and a solid Kingdom foundation.
-          </p>
+          <div className="max-w-3xl mx-auto space-y-4 mb-12">
+            <p className="text-lg font-light leading-relaxed text-stone-300">
+              We are committed to delivering sound biblical teaching that equips believers to understand God’s Kingdom, grow in spiritual maturity and walk confidently in their divine purpose.
+            </p>
+            <p className="text-sm md:text-base font-light leading-relaxed text-stone-400">
+              Our teachings focus on Kingdom principles, spiritual growth, divine guidance, discipleship, leadership development and the transforming work of the Holy Spirit. Through sermons, Bible studies, conferences and digital resources, we seek to provide practical and life-changing truth that empowers believers to live according to God’s Word and fulfill their God-given calling.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              <div className="p-8 rounded-[24px] bg-white/5 border border-white/10 hover:border-white/20 transition-all text-left group cursor-pointer">
                 <span className="text-[10px] font-mono uppercase text-white/40 mb-3 block">KINGDOM SERIES</span>
@@ -795,11 +797,16 @@ export default function App() {
               SERVICES & ENCOUNTERS
             </span>
             <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white leading-tight">
-              Walking <span className="font-serif-instrument italic text-amber-500/80 font-normal">Together</span>
+              Kingdom <span className="font-serif-instrument italic text-amber-500/80 font-normal">Encounters</span> &amp; Gatherings
             </h2>
-            <p className="text-stone-400 max-w-xl mx-auto font-light leading-relaxed">
-              Join us in our weekly church services or life group chapters. Experience powerful encounters and active church life.
-            </p>
+            <div className="max-w-3xl mx-auto space-y-4">
+              <p className="text-lg font-light leading-relaxed text-stone-300">
+                Royal Ministry hosts conferences, seminars, prayer gatherings, leadership meetings and special ministry events designed to encourage spiritual growth and Kingdom advancement.
+              </p>
+              <p className="text-sm md:text-base text-stone-400 font-light leading-relaxed">
+                Our events provide opportunities for worship, teaching, prayer, fellowship and personal transformation. Whether in-person or online, our desire is to create environments where people can encounter God, receive biblical instruction and be equipped for effective Christian living and service.
+              </p>
+            </div>
           </div>
 
           {/* Vertical Events Layout with elegant thin division lines */}
@@ -899,7 +906,7 @@ export default function App() {
                           }`}
                           id={`rsvp-action-${evo.id}`}
                         >
-                          {hasRsvp ? 'Cancel RSVP' : 'Register & Attend'}
+                          {hasRsvp ? 'Cancel RSVP' : 'Join Encounter'}
                         </button>
                         <button 
                           onClick={() => selectTab('EVENTS')}
@@ -925,14 +932,19 @@ export default function App() {
       >
         <div className="max-w-4xl mx-auto px-6 text-center">
           <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block mb-4">
-            SUPERNATURAL INTERVENTION
+            PRAYER & SPIRITUAL GROWTH
           </span>
           <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white mb-6">
-            We Stand With You in <span className="font-serif-instrument italic text-amber-500/80 font-normal">Prayer</span>
+            Prayer is one of the <span className="font-serif-instrument italic text-amber-500/80 font-normal">foundations</span> of Royal Ministry
           </h2>
-          <p className="text-lg font-light leading-relaxed text-stone-400 max-w-2xl mx-auto mb-10">
-            Prayer changes things. Submit your prayer requests securely and our intercession team will stand with you for divine breakthrough.
-          </p>
+          <div className="max-w-3xl mx-auto space-y-4 mb-10">
+            <p className="text-lg font-light leading-relaxed text-stone-300">
+              We believe that spiritual growth and transformation are the result of a living relationship with God through Jesus Christ and the ongoing work of the Holy Spirit.
+            </p>
+            <p className="text-sm md:text-base font-light leading-relaxed text-stone-400">
+              Through prayer, discipleship, biblical teaching and spiritual encouragement, we help believers grow stronger in their faith, develop spiritual maturity and experience greater intimacy with God. We also provide prayer support and ministry opportunities for individuals seeking spiritual breakthrough, healing, restoration and deeper spiritual development.
+            </p>
+          </div>
           <button 
             onClick={() => selectTab('COMMUNITY')}
             className="bg-white text-black text-[14px] font-semibold rounded-full px-8 py-4 cursor-pointer hover:scale-[1.02] hover:shadow-[0_0_35px_5px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-300 inline-flex items-center gap-2"
@@ -947,31 +959,85 @@ export default function App() {
         className="relative py-24 md:py-32 bg-[#121110] text-white z-30 border-t border-white/5"
         id="leadership-section"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center md:text-left">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 relative aspect-square overflow-hidden rounded-[24px] border border-white/10 shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1000&auto=format&fit=crop" 
-                alt="Leadership Team"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
-            </div>
-            <div className="order-1 md:order-2 space-y-6">
-              <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block">
-                APOSTOLIC OVERSIGHT
-              </span>
-              <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white">
-                Our <span className="font-serif-instrument italic text-amber-500/80 font-normal">Leadership</span>
-              </h2>
-              <p className="text-lg font-light leading-relaxed text-stone-400">
-                Led by visionaries carrying a strong apostolic and prophetic grace, Royal Ministry is committed to equipping the saints for the work of the ministry.
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Section title */}
+          <div className="text-center md:text-left mb-16 space-y-3">
+            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-500/60 block">
+              APOSTOLIC OVERSIGHT & FOUNDERS
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sans font-light tracking-tight text-white">
+              Our <span className="font-serif-instrument italic text-amber-500/80 font-normal">Leadership</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left column: Comprehensive biography */}
+            <div className="lg:col-span-6 space-y-6 text-stone-300 font-light leading-relaxed">
+              <p className="text-lg text-white font-medium leading-relaxed">
+                Pastor Isaac Mahougnon and Martina Mahougnon are the founders of Royal Ministry.
               </p>
-              <p className="text-base font-light leading-relaxed text-stone-500">
-                Their mandate is to raise a generation of believers who understand their Kingdom identity and walk in the fullness of God's power.
+              <p className="text-stone-400 text-sm md:text-base">
+                Driven by a passion for God’s Kingdom and the transforming power of the Holy Spirit, they are committed to equipping believers through biblical teaching, spiritual growth, discipleship and Kingdom-centered living.
+              </p>
+              <p className="text-stone-400 text-sm md:text-base">
+                Royal Ministry was established with a clear vision: to help individuals discover their divine purpose, grow in spiritual maturity and become effective representatives of Jesus Christ in every sphere of life.
+              </p>
+              <p className="text-stone-400 text-sm md:text-base font-medium text-amber-500/80">
+                Their desire is to see lives transformed, believers equipped and communities impacted through the power of God’s Word and the work of the Holy Spirit.
               </p>
             </div>
+
+            {/* Right column: Fine aesthetic twin-card layout for Pastor Isaac & Coordinator Martina */}
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Card 1: Pastor Isaac */}
+              <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
+                <div className="aspect-[4/5] w-full rounded-xl overflow-hidden relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop" 
+                    alt="Pastor Isaac Mahougnon"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono tracking-wider text-amber-500 uppercase">
+                    Founder & Pastor
+                  </span>
+                  <h4 className="text-lg font-semibold tracking-tight text-white">
+                    Pastor Isaac Mahougnon
+                  </h4>
+                  <p className="text-xs text-stone-400 font-light leading-relaxed">
+                    Apostolic leader driving Kingdom depth, prophetic revelation and biblical sound teaching.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Martina */}
+              <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
+                <div className="aspect-[4/5] w-full rounded-xl overflow-hidden relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" 
+                    alt="Martina Mahougnon"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono tracking-wider text-amber-500 uppercase">
+                    Co-Founder & Leader
+                  </span>
+                  <h4 className="text-lg font-semibold tracking-tight text-white">
+                    Martina Mahougnon
+                  </h4>
+                  <p className="text-xs text-stone-400 font-light leading-relaxed">
+                    Leading prayer networks, community discipleship and organizational vision.
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1017,17 +1083,31 @@ export default function App() {
               <div className="space-y-6 text-center md:text-left">
                 <div className="max-w-xl space-y-3">
                   <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/40 block">
-                    MINISTRY NEWSLETTER
+                    CONTACT & COMMUNITY
                   </span>
-                  <h3 className="text-3xl font-sans font-light tracking-tight text-white">
-                    Stay <span className="font-serif-instrument italic text-white/70 font-normal">Connected</span>
+                  <h3 className="text-3xl font-sans font-light tracking-tight text-white animate-fade-in">
+                    We would love to <span className="font-serif-instrument italic text-white/70 font-normal">hear from you</span>
                   </h3>
-                  <p className="text-xs md:text-sm font-light text-white/55 leading-relaxed">
-                    Receive spiritual insights, event updates, and invitations directly in your inbox. No spam – only valuable inspiration.
+                  <p className="text-xs md:text-sm font-light text-white/70 leading-relaxed">
+                    Whether you have a prayer request, a question about our ministry, or would simply like to connect, we welcome you to reach out.
                   </p>
+                  <p className="text-xs md:text-sm font-light text-white/50 leading-relaxed">
+                    Our team is committed to serving, encouraging and supporting individuals as they grow in their relationship with Jesus Christ. Feel free to contact us through our contact form, email or future ministry communication channels.
+                  </p>
+                  <div className="pt-2">
+                    <button 
+                      onClick={() => selectTab('COMMUNITY')}
+                      className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase px-5 py-2.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/10 rounded-full transition-all"
+                      id="footer-contact-modal-btn"
+                    >
+                      Open Contact Form &amp; Info
+                      <ArrowRight size={10} />
+                    </button>
+                  </div>
                 </div>
 
-                <form onSubmit={handleNewsletterSubmit} className="pt-4 space-y-4" id="newsletter-form">
+                <form onSubmit={handleNewsletterSubmit} className="pt-6 border-t border-white/5 space-y-4" id="newsletter-form">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 block">Subscribe to our newsletter</span>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="relative flex-1">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={16} />
@@ -1074,10 +1154,9 @@ export default function App() {
             <div className="md:col-span-5 space-y-4">
               <div className="flex items-baseline gap-0.5 text-white">
                 <span className="text-[20px] font-sans font-bold tracking-tight">Royal Ministry</span>
-                <sup className="text-[9px] font-mono text-white/40 font-medium">TM</sup>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-sm">
-                Royal Ministry stands for clarity, community, and spiritual growth. A safe harbor in a fast-paced world.
+                Raising Lives Through Kingdom Truth &amp; Supernatural Transformation
               </p>
               <div className="flex items-center gap-1.5 text-xs text-stone-500 py-1 font-mono">
                 <Shield size={13} />
