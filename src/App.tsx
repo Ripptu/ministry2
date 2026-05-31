@@ -993,7 +993,7 @@ export default function App() {
               <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
                 <div className="w-full rounded-xl overflow-hidden relative bg-black/40">
                   <img 
-                    src="https://s1.directupload.eu/images/260531/k4x37hvm.webp" 
+                    src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260531_134117_6f0523fe-385a-4efc-8326-b99f69fdafe8.png&w=1280&q=85" 
                     alt="Pastor Isaac Mahougnon"
                     className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-102"
                     referrerPolicy="no-referrer"
@@ -1017,7 +1017,7 @@ export default function App() {
               <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
                 <div className="w-full rounded-xl overflow-hidden relative bg-black/40">
                   <img 
-                    src="https://s1.directupload.eu/images/260531/y8on4mij.webp" 
+                    src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260531_135902_4b95d1de-bb7a-4431-bf3d-a078b6d85130.png&w=1280&q=85" 
                     alt="Martina Mahougnon"
                     className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-102"
                     referrerPolicy="no-referrer"
