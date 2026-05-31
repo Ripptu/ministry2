@@ -611,18 +611,18 @@ export default function App() {
               <div className="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full pointer-events-none" />
               
               {/* High-res luxurious architectural shadow image */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-2xl border border-white/5" id="vision-photo-wrap">
+              <div className="relative overflow-hidden rounded-[24px] shadow-2xl border border-white/5 bg-[#131110]" id="vision-photo-wrap">
                 <img 
-                  src="https://theroyalministry.org/wp-content/uploads/2019/11/z2-slider1.jpg"
-                  alt="Minimalist Spiritual Sacred Wood and Concrete Architecture Shadow"
-                  className="w-full h-full object-cover hover:scale-[1.04] transition-transform duration-1000"
+                  src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260531_122301_99bba794-2b25-43e0-973e-438f2ec7711c.png&w=1280&q=85"
+                  alt="Royal Ministry Ministry Image"
+                  className="w-full h-auto block hover:scale-[1.02] transition-transform duration-1000"
                   referrerPolicy="no-referrer"
                 />
                 
                 {/* Embedded Quote Graphic inside the column frame */}
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#131110]/95 backdrop-blur-md rounded-2xl border border-white/10">
-                  <Quote size={24} className="text-stone-500 mb-2" />
-                  <p className="text-xs font-serif-instrument italic leading-relaxed text-stone-300">
+                <div className="absolute bottom-6 left-6 right-6 p-5 bg-[#131110]/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg">
+                  <Quote size={20} className="text-amber-500/80 mb-1.5" />
+                  <p className="text-xs font-serif-instrument italic leading-relaxed text-stone-200">
                     "Faith is not clinging to simple dogmas, but placing complete trust in a reliable foundation."
                   </p>
                 </div>
