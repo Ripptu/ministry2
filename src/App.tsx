@@ -991,11 +991,11 @@ export default function App() {
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Card 1: Pastor Isaac */}
               <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
-                <div className="aspect-[4/5] w-full rounded-xl overflow-hidden relative">
+                <div className="w-full rounded-xl overflow-hidden relative bg-black/40">
                   <img 
-                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop" 
+                    src="https://s1.directupload.eu/images/260531/k4x37hvm.webp" 
                     alt="Pastor Isaac Mahougnon"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+                    className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-102"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -1015,11 +1015,11 @@ export default function App() {
 
               {/* Card 2: Martina */}
               <div className="group relative rounded-2xl overflow-hidden border border-white/5 bg-[#1a1715] p-4 flex flex-col gap-4 shadow-xl hover:border-white/25 transition-all duration-300">
-                <div className="aspect-[4/5] w-full rounded-xl overflow-hidden relative">
+                <div className="w-full rounded-xl overflow-hidden relative bg-black/40">
                   <img 
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" 
+                    src="https://s1.directupload.eu/images/260531/y8on4mij.webp" 
                     alt="Martina Mahougnon"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+                    className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-102"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
