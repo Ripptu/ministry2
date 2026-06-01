@@ -25,7 +25,8 @@ import {
   ChevronUp,
   X,
   Mail,
-  Heart
+  Heart,
+  Cookie
 } from 'lucide-react';
 import { MinistryPillar, ActiveTab } from './types';
 import PlanEscapeModal from './components/PlanEscapeModal';
@@ -275,6 +276,28 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const lastScrollY = useRef(0);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
+
+  // Cookie actions
+  const handleAcceptCookies = () => {
+    localStorage.setItem('rm-cookie-consent', 'accepted');
+    setShowCookieBanner(false);
+  };
+
+  const handleDeclineCookies = () => {
+    localStorage.setItem('rm-cookie-consent', 'declined');
+    setShowCookieBanner(false);
+  };
+
+  useEffect(() => {
+    const consent = localStorage.getItem('rm-cookie-consent');
+    if (!consent) {
+      const timer = setTimeout(() => {
+        setShowCookieBanner(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   // Interactive UI states
   const [activeSermonId, setActiveSermonId] = useState<string | null>(null);
@@ -985,6 +1008,15 @@ export default function App() {
               <p className="text-stone-400 text-sm md:text-base font-medium text-amber-500/80">
                 Their desire is to see lives transformed, believers equipped and communities impacted through the power of God’s Word and the work of the Holy Spirit.
               </p>
+              <div className="pt-2">
+                <button 
+                  onClick={() => selectTab('LEADERSHIP')}
+                  className="px-6 py-3 bg-white/5 border border-white/10 hover:border-white/20 text-xs text-white font-mono uppercase tracking-widest rounded-full cursor-pointer hover:bg-white/10 transition-all inline-flex items-center gap-1.5"
+                >
+                  <span>Open Leadership Portal</span>
+                  <ArrowRight size={12} className="text-amber-500" />
+                </button>
+              </div>
             </div>
 
             {/* Right column: Fine aesthetic twin-card layout for Pastor Isaac & Coordinator Martina */}
@@ -1227,11 +1259,15 @@ export default function App() {
 
           </div>
 
-          {/* Core copyright tagline block */}
+          {/* Core copyright tagline block with highly visible German compliant legal links */}
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-[#4C4E53]">
-            <span>
-              &copy; {new Date().getFullYear()} Royal Ministry. All rights reserved.
-            </span>
+            <div className="flex flex-wrap items-center gap-4 text-stone-500 font-sans text-xs">
+              <span>&copy; {new Date().getFullYear()} Royal Ministry. All rights reserved.</span>
+              <span className="text-stone-700 hidden sm:inline">|</span>
+              <button onClick={() => selectTab('IMPRINT')} className="hover:text-white transition-colors cursor-pointer text-left">Impressum / Imprint</button>
+              <button onClick={() => selectTab('PRIVACY')} className="hover:text-white transition-colors cursor-pointer text-left">Datenschutz / Privacy</button>
+              <button onClick={() => selectTab('AGB')} className="hover:text-white transition-colors cursor-pointer text-left">AGB / Terms</button>
+            </div>
             <div className="flex items-center gap-3">
               <span className="inline-block w-2 h-2 bg-emerald-500/80 rounded-full" />
               <span>Faith & Grace in the Kingdom</span>
@@ -1240,6 +1276,48 @@ export default function App() {
 
         </div>
       </footer>
+
+      {/* Cookie Consent Banner */}
+      {showCookieBanner && (
+        <div 
+          className="fixed bottom-6 left-6 right-6 md:left-auto md:right-12 md:max-w-md z-50 p-6 rounded-2xl border border-white/10 bg-[#131110]/95 backdrop-blur-md shadow-2xl flex flex-col gap-4 animate-fade-in"
+          id="cookie-consent-banner"
+        >
+          <div className="flex gap-3 items-start">
+            <div className="p-2.5 rounded-xl bg-white/5 h-fit text-amber-500 border border-white/5">
+              <Cookie size={18} />
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold tracking-tight text-white mb-1">
+                Cookie-Einwilligung / Cookie Consent
+              </h4>
+              <p className="text-[11px] font-light tracking-wide text-stone-300 leading-relaxed">
+                Wir nutzen funktionale Cookies, um das Laden der Predigten-Archive und die Wegweiser-Ausstellungen DSGVO-konform zu koordinieren. Details finden Sie in der{' '}
+                <button 
+                  onClick={() => selectTab('PRIVACY')} 
+                  className="underline text-amber-500 hover:text-amber-400 cursor-pointer"
+                >
+                  Datenschutzerklärung
+                </button>.
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-end gap-3 text-[10px] uppercase font-mono tracking-wider">
+            <button 
+              onClick={handleDeclineCookies}
+              className="px-4 py-2 hover:bg-white/5 rounded-full text-stone-400 hover:text-white transition-colors cursor-pointer text-left"
+            >
+              Decline
+            </button>
+            <button 
+              onClick={handleAcceptCookies}
+              className="px-5 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-full transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Consent
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* PORTAL SYSTEM MODAL COOPERATIVE OVERLAYS */}
       <PlanEscapeModal 
