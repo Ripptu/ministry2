@@ -305,6 +305,7 @@ export default function App() {
   const [rsvpList, setRsvpList] = useState<string[]>([]);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [newsletterError, setNewsletterError] = useState('');
 
   // References for mouse physics parallax in Hero section
   const videoWrapperRef = useRef<HTMLDivElement>(null);
@@ -409,9 +410,10 @@ export default function App() {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail.trim() || !newsletterEmail.includes('@')) {
-      alert('Please enter a valid email address.');
+      setNewsletterError('Please enter a valid email address.');
       return;
     }
+    setNewsletterError('');
     setNewsletterSubmitted(true);
   };
 
@@ -1140,6 +1142,11 @@ export default function App() {
 
                 <form onSubmit={handleNewsletterSubmit} className="pt-6 border-t border-white/5 space-y-4" id="newsletter-form">
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 block">Subscribe to our newsletter</span>
+                  {newsletterError && (
+                    <div className="text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-2 rounded-xl h-fit w-full sm:max-w-md">
+                      {newsletterError}
+                    </div>
+                  )}
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="relative flex-1">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={16} />

@@ -110,11 +110,17 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
   const [contactTopic, setContactTopic] = useState('Allgemeines Interesse');
   const [contactMessage, setContactMessage] = useState('');
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactError, setContactError] = useState('');
 
   useEffect(() => {
     if (activeTab) {
       setCurrentTab(activeTab);
       document.body.style.overflow = 'hidden';
+      setContactName('');
+      setContactEmail('');
+      setContactMessage('');
+      setContactSubmitted(false);
+      setContactError('');
       // Announce and animate entry
       gsap.fromTo(containerRef.current,
         { opacity: 0 },
@@ -155,13 +161,11 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactName.trim() || !contactEmail.includes('@')) {
-      alert('Bitte füllen Sie Name und gültige E-Mail-Adresse aus.');
+      setContactError('Bitte füllen Sie Ihren Namen und eine gültige E-Mail-Adresse aus.');
       return;
     }
+    setContactError('');
     setContactSubmitted(true);
-    setTimeout(() => {
-      // Simulate close or soft reset
-    }, 4000);
   };
 
   if (!activeTab) return null;
@@ -585,6 +589,11 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                       </div>
                     ) : (
                       <form onSubmit={handleContactSubmit} className="space-y-3">
+                        {contactError && (
+                          <div className="p-2.5 rounded-xl text-xs bg-red-500/10 border border-red-500/20 text-red-300 font-mono text-center">
+                            {contactError}
+                          </div>
+                        )}
                         <div className="grid grid-cols-2 gap-3">
                           <div className="flex flex-col gap-1">
                             <label className="text-[9px] font-mono uppercase tracking-widest text-white/40">Your Name</label>
@@ -658,7 +667,7 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                 <div className="space-y-4 text-xs font-light text-white/70 leading-relaxed border-t border-white/10 pt-4">
                   <div>
                     <h4 className="font-mono text-[9px] tracking-wider text-amber-500 uppercase mb-1">Angaben gemäß § 5 TMG / Information according to § 5 TMG</h4>
-                    <p className="text-white font-medium text-sm">Royal Ministry e.V. (i.Gr.)</p>
+                    <p className="text-white font-medium text-sm">Royal Ministry</p>
                     <p>Rheinlandstraße 14</p>
                     <p>60529 Frankfurt am Main</p>
                     <p>Germany / Deutschland</p>
@@ -743,7 +752,7 @@ export default function NavigationModal({ activeTab, onClose, pillars, onOpenPla
                   </div>
                   <div>
                     <h4 className="font-mono text-[9px] tracking-wider text-amber-500 uppercase mb-1">2. Verantwortliche Stelle / Controller</h4>
-                    <p className="font-medium text-white">Royal Ministry e.V. (i.Gr.)</p>
+                    <p className="font-medium text-white">Royal Ministry</p>
                     <p>Rheinlandstraße 14, 60529 Frankfurt am Main, Germany</p>
                     <p>E-Mail: Isaacmahugnon23@web.de</p>
                   </div>

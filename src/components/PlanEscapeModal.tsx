@@ -16,6 +16,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
   const [durationWeeks, setDurationWeeks] = useState<number>(4);
   const [userName, setUserName] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>('');
+  const [validationError, setValidationError] = useState<string>('');
   
   // Generating outcome
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -35,6 +36,7 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
       setDurationWeeks(4);
       setUserName('');
       setUserEmail('');
+      setValidationError('');
       setIsGenerating(false);
       setCompletedPlan(false);
       setGenerationProgress(0);
@@ -84,9 +86,10 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
 
   const triggerItineraryGeneration = () => {
     if (!userName.trim() || !userEmail.includes('@')) {
-      alert('Please enter a valid name and email address to secure your customized plan.');
+      setValidationError('Please enter a valid name and email address.');
       return;
     }
+    setValidationError('');
     setIsGenerating(true);
     let currentVal = 0;
     const interval = setInterval(() => {
@@ -379,6 +382,12 @@ export default function PlanEscapeModal({ isOpen, onClose, pillars }: PlanEscape
                 <p className="text-sm font-light text-white/50 mb-6">
                   Your privacy is highly valued. We respect your security. No spam, end-to-end alignment.
                 </p>
+
+                {validationError && (
+                  <div className="p-3 mb-4 rounded-xl text-xs bg-red-500/10 border border-red-500/20 text-red-300 text-center max-w-md mx-auto font-mono">
+                    {validationError}
+                  </div>
+                )}
 
                 <div className="space-y-4 max-w-md mx-auto">
                   <div className="flex flex-col gap-1.5 text-left">
